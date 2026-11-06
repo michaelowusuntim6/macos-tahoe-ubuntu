@@ -141,8 +141,12 @@ def main(argv: list[str] | None = None) -> int:
             result = rollback_manager.uninstall(
                 ROOT, state, backup_dir=backup_manager.latest_backup(ROOT),
                 dry_run=args.dry_run, restore_backup=True)
-            log.info("removed %d managed paths; restored %d settings",
-                     len(result["files_removed"]), len(result["settings_restored"]))
+            if args.dry_run:
+                log.info("[dry-run] would remove %d managed paths and restore %d settings",
+                         len(result["files_removed"]), len(result["settings_restored"]))
+            else:
+                log.info("removed %d managed paths; restored %d settings",
+                         len(result["files_removed"]), len(result["settings_restored"]))
             log.info("log out and back in to finish returning to the previous desktop")
             return 0
         if args.repair:

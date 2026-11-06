@@ -211,7 +211,7 @@ Supporting commands: `uninstall.sh`, `verify.sh [--headless]`, `repair.sh`,
 ## 19. Portable export
 
 `./export.sh` produces `releases/macos-tahoe-ubuntu-v1.1.1.tar.gz`,
-`.sha256` and `-manifest.json` (SHA-256 `1f17c13934f3eefb033364bdd28132074e09050be3957fc155e2b208d969b3e0`). Apple-proprietary wallpapers/references are
+`.sha256` and `-manifest.json` (SHA-256 `74e7af671b4bdb00d0537ab5a5517cd2efb443fdda6291be1a6b2b1f700bd36a`). Apple-proprietary wallpapers/references are
 excluded by default and re-downloaded/verified online at install; if absent,
 the generated fallback wallpapers are installed. Copy the release **off the
 machine** before reinstalling Ubuntu.

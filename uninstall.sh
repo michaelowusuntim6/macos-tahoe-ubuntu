@@ -33,4 +33,12 @@ if (( ! assume_yes && ! dry )); then
     [[ "$answer" =~ ^[Yy]$ ]] || { echo "Cancelled."; exit 0; }
 fi
 
-exec python3 -E -s "$ROOT/engine/main.py" --uninstall "$@"
+# --yes/-y is only for the shell prompt; do not forward it to argparse.
+py_args=()
+for arg in "$@"; do
+    case "$arg" in
+        --yes|-y) ;;
+        *) py_args+=("$arg") ;;
+    esac
+done
+exec python3 -E -s "$ROOT/engine/main.py" --uninstall "${py_args[@]}"
