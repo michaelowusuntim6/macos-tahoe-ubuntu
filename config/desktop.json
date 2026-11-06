@@ -250,18 +250,21 @@
       "dock-workspace-mode": 0,
       "magnification-spring-stiffness": 320.0,
       "magnification-spring-damping": 26.0,
-      "magnification-spring-mass": 1.0
+      "magnification-spring-mass": 1.0,
+      "auto-hide-delay": 550
     },
     "profiles": {
       "full": {
         "dock-blur-sigma": 22,
         "window-previews": false,
-        "icon-quality": 2
+        "icon-quality": 2,
+        "auto-hide-delay": 550
       },
       "lightweight": {
         "dock-blur-sigma": 18,
         "window-previews": false,
-        "icon-quality": 2
+        "icon-quality": 2,
+        "auto-hide-delay": 550
       }
     }
   },

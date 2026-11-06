@@ -169,6 +169,10 @@ export class DockManager {
         this._signals.connect(settings, "changed::running-indicator-style", () => {
             iconManager.setIndicatorStyle(settings.get_int("running-indicator-style"));
         });
+        this._signals.connect(settings, "changed::auto-hide-delay", () => {
+            if (this._visibility)
+                this._visibility.updateAutoHideDelay(settings.get_int("auto-hide-delay"));
+        });
         this._signals.connect(settings, "changed::show-threshold", () => {
             if (this._visibility && settings.get_boolean("auto-hide")) {
                 this._startAutoHide();
@@ -275,7 +279,11 @@ export class DockManager {
         // Clean up any existing auto-hide before creating new.
         this._stopAutoHide();
         this._intellihide = new Intellihide();
-        this._visibility = new DockVisibility(this._container, this._intellihide, this._dockHeight, this._settings.get_int("animation-duration"), this._settings.get_int("show-threshold"), this._dockPosition, this._settings.get_double("magnification-scale"));
+        this._visibility = new DockVisibility(this._container, this._intellihide,
+            this._dockHeight, this._settings.get_int("animation-duration"),
+            this._settings.get_int("show-threshold"), this._dockPosition,
+            this._settings.get_double("magnification-scale"),
+            this._settings.get_int("auto-hide-delay"));
         if (this._previewPopup) {
             this._visibility.setPreviewPopup(this._previewPopup);
         }
@@ -548,13 +556,11 @@ export class DockManager {
         this._removeCustomCssDirectory();
     }
     _deleteCustomCssFile(file) {
-        try {
-            if (file.query_exists(null))
-                file.delete(null);
-        }
-        catch (error) {
-            console.error(`MacOS Dock: Failed to remove cached custom CSS: ${error}`);
-        }
+        // Keep cached stylesheets on disk. GNOME Shell may still hold a
+        // reference to a stylesheet after the dock changes or unloads its
+        // custom CSS; deleting the backing file makes User Themes fail with a
+        // missing-file error on its next theme reload. The cache is tiny.
+        void file;
     }
     _removeCustomCssDirectory() {
         if (!this._customCssDirectory)

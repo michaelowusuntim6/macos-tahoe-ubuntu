@@ -7,7 +7,7 @@ A reproducible, per-user recreation of **macOS Tahoe** on **Ubuntu 26.04 / GNOME
   <img alt="Ubuntu" src="https://img.shields.io/badge/Ubuntu-26.04_LTS-E95420">
   <img alt="GNOME" src="https://img.shields.io/badge/GNOME_Shell-50-4A86CF">
   <img alt="Wayland" src="https://img.shields.io/badge/session-Wayland-2E8B57">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-88_passing-brightgreen">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-90_passing-brightgreen">
 </p>
 
 > **Status:** the desktop transformation is implemented and verified on the target machine. The automation project is self-contained and independent of any AI agent — install, verify, repair, restore and export all run from local scripts.
@@ -175,13 +175,13 @@ Blur is statically cached for the panel/popovers; the dock effect is limited to 
 ## Verification and testing
 
 ```bash
-./verify.sh              # 93 live checks
+./verify.sh              # 95 live checks
 ./verify.sh --headless   # plus an isolated nested GNOME Shell test
 ./repair.sh              # diagnose then re-apply managed components
 ./uninstall.sh           # restore original dconf/files, remove owned assets
 ```
 
-- 88 unit/integration tests (`python3 -m unittest discover -s tests -t tests`).
+- 90 unit/integration tests (`python3 -m unittest discover -s tests -t tests`).
 - Fresh-install simulation: exports the release, installs it **offline** into a temporary HOME/XDG tree with a private D-Bus session, runs the installer twice (idempotency), checks every artefact, dconf state, single-dock blacklist and machine isolation — without touching the live desktop.
 - Live verification distinguishes *applied* from *loaded*: extensions that need a login are reported as warnings, never claimed active.
 
@@ -191,17 +191,17 @@ Blur is statically cached for the panel/popovers; the dock effect is limited to 
 
 ```bash
 ./export.sh
-# releases/macos-tahoe-ubuntu-v1.1.1.tar.gz
-# releases/macos-tahoe-ubuntu-v1.1.1.sha256
-# releases/macos-tahoe-ubuntu-v1.1.1-manifest.json
+# releases/macos-tahoe-ubuntu-v1.1.2.tar.gz
+# releases/macos-tahoe-ubuntu-v1.1.2.sha256
+# releases/macos-tahoe-ubuntu-v1.1.2-manifest.json
 ```
 
 Copy the archive and checksum **off the machine** before formatting. On the fresh install:
 
 ```bash
-tar xzf macos-tahoe-ubuntu-v1.1.1.tar.gz
-cd macos-tahoe-ubuntu-v1.1.1
-sha256sum -c ../macos-tahoe-ubuntu-v1.1.1.sha256
+tar xzf macos-tahoe-ubuntu-v1.1.2.tar.gz
+cd macos-tahoe-ubuntu-v1.1.2
+sha256sum -c ../macos-tahoe-ubuntu-v1.1.2.sha256
 ./install.sh
 ```
 
@@ -225,7 +225,7 @@ macos-tahoe-ubuntu/
 ├── assets/                     # themes, generated glass CSS, icons, fonts, wallpapers
 ├── extensions/                 # vendored TPCT shell + MacOSDock (patched)
 ├── tools/                      # reference analysis, glass generation, captures
-├── tests/                      # 88 tests + fresh-install simulation
+├── tests/                      # 90 tests + fresh-install simulation
 ├── state/ backups/ logs/ reports/ releases/
 ```
 

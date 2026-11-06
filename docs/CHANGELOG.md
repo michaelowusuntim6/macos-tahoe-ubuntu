@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.2 — 2026-11-06 — Reliable idle auto-hide
+
+- **Auto-hide no longer depends on pointer movement.** On Wayland, motion
+  events over application windows do not reach the Shell stage, so the dock
+  could stay visible until the pointer touched a shell surface. The dock now
+  polls the pointer while shown and hides after a configurable delay even when
+  the pointer is stationary.
+- Added `auto-hide-delay` (default 550 ms) to the MacOSDock schema, driven by
+  `config/motion.json` (`dock.auto_hide_delay_ms`), and verified live.
+- MacOSDock now keeps its cached custom stylesheets instead of deleting them;
+  deleting a stylesheet still referenced by GNOME Shell made User Themes enter
+  an ERROR state after theme/dock reloads.
+- Tests: 90 (auto-hide polling and configuration regressions added).
+- Rebuilt portable release.
+
 ## 1.1.1 — 2026-11-06 — Field-test fixes (dock + menus)
 
 - **Duplicate dock fixed.** Ubuntu's session mode (`/usr/share/gnome-shell/modes/ubuntu.json`)

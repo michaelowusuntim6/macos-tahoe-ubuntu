@@ -10,7 +10,8 @@
       "mass": 1.0
     },
     "show_hide_duration_ms": 220,
-    "bounce_on_launch": true
+    "bounce_on_launch": true,
+    "auto_hide_delay_ms": 550
   },
   "hover": {
     "duration_ms": 140,

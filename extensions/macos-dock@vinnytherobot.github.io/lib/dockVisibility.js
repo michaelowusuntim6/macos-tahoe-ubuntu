@@ -22,6 +22,7 @@ export class DockVisibility {
     _intellihide;
     _monitor = null;
     _animationDuration;
+    _autoHideDelay;
     _showThreshold;
     _dockHeight;
     _magnificationScale;
@@ -37,6 +38,7 @@ export class DockVisibility {
     _restingTranslationX = 0;
     _restingTranslationY = 0;
     _hideSourceId = null;
+    _pointerPollId = null;
     _animationSourceId = null;
     _animationStartTime = 0;
     _animationFromX = 0;
@@ -45,11 +47,12 @@ export class DockVisibility {
     _animationToX = 0;
     _animationToY = 0;
     _animationToOpacity = 0;
-    constructor(container, intellihide, dockHeight, animationDuration = 200, showThreshold = 25, edge = 0, magnificationScale = 1.0) {
+    constructor(container, intellihide, dockHeight, animationDuration = 200, showThreshold = 25, edge = 0, magnificationScale = 1.0, autoHideDelay = 550) {
         this._signals = new SignalManager();
         this._container = container;
         this._intellihide = intellihide;
         this._animationDuration = animationDuration;
+        this._autoHideDelay = Math.max(0, autoHideDelay);
         this._showThreshold = showThreshold;
         this._dockHeight = dockHeight;
         this._magnificationScale = magnificationScale;
@@ -97,6 +100,9 @@ export class DockVisibility {
     updateShownY(_y) { }
     updateAnimationDuration(duration) {
         this._animationDuration = Math.max(0, Math.min(1000, duration));
+    }
+    updateAutoHideDelay(delay) {
+        this._autoHideDelay = Math.max(0, Math.min(10000, delay));
     }
     start() {
         this._cancelHide();
@@ -178,6 +184,7 @@ export class DockVisibility {
     }
     stop() {
         this._cancelHide();
+        this._stopPointerPoll();
         this._signals.disconnectAll();
         if (this._edgeActivator) {
             Main.layoutManager.removeChrome(this._edgeActivator);
@@ -242,7 +249,8 @@ export class DockVisibility {
     _scheduleHide() {
         if (this._hideSourceId !== null)
             return;
-        this._hideSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 120, () => {
+        this._hideSourceId = GLib.timeout_add(GLib.PRIORITY_DEFAULT,
+            Math.max(0, this._autoHideDelay), () => {
             this._hideSourceId = null;
             const [x, y] = global.get_pointer();
             this._pointerX = x;
@@ -262,6 +270,33 @@ export class DockVisibility {
             return;
         GLib.Source.remove(this._hideSourceId);
         this._hideSourceId = null;
+    }
+    /**
+     * Motion events are delivered to application windows on Wayland, not to the
+     * Shell stage, so a pointer that stops over a window would never trigger the
+     * hide check. Poll the pointer while the dock is shown instead; the poll
+     * stops as soon as the dock hides.
+     */
+    _startPointerPoll() {
+        if (this._pointerPollId !== null)
+            return;
+        this._pointerPollId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 100, () => {
+            if (!this._shown) {
+                this._pointerPollId = null;
+                return GLib.SOURCE_REMOVE;
+            }
+            const [x, y] = global.get_pointer();
+            this._pointerX = x;
+            this._pointerY = y;
+            this._updatePointerState();
+            return GLib.SOURCE_CONTINUE;
+        });
+    }
+    _stopPointerPoll() {
+        if (this._pointerPollId === null)
+            return;
+        GLib.Source.remove(this._pointerPollId);
+        this._pointerPollId = null;
     }
     /**
      * Whether the pointer is inside the screen-edge activation zone.
@@ -365,11 +400,13 @@ export class DockVisibility {
             return;
         this._shown = true;
         this._animateVisibility(true);
+        this._startPointerPoll();
     }
     _hide() {
         if (!this._shown)
             return;
         this._shown = false;
+        this._stopPointerPoll();
         this._animateVisibility(false);
     }
     _animateVisibility(show) {

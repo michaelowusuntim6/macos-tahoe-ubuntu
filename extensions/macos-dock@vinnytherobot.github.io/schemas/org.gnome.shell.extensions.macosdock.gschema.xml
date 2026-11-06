@@ -12,6 +12,12 @@
       <summary>Auto-hide</summary>
       <description>Whether to auto-hide the dock when the pointer moves away</description>
     </key>
+    <key name="auto-hide-delay" type="i">
+      <default>550</default>
+      <range min="0" max="10000"/>
+      <summary>Auto-hide delay</summary>
+      <description>Delay in milliseconds after the pointer leaves the dock before it hides</description>
+    </key>
     <key name="magnification-enabled" type="b">
       <default>true</default>
       <summary>Enable magnification</summary>

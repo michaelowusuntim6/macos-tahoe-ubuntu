@@ -118,6 +118,22 @@ class GtkCssTests(unittest.TestCase):
         self.assertIn("background-color: transparent", css)
 
 
+class AutoHideTests(unittest.TestCase):
+    def test_dock_autohide_polls_pointer(self):
+        js = (ROOT / "extensions/macos-dock@vinnytherobot.github.io/lib/dockVisibility.js").read_text()
+        self.assertIn("_startPointerPoll", js)
+        self.assertIn("autoHideDelay", js)
+        # The hide delay must not be the old hard-coded 120 ms debounce.
+        self.assertNotIn("PRIORITY_DEFAULT, 120", js)
+
+    def test_autohide_delay_is_exposed_and_configured(self):
+        schema = (ROOT / "extensions/macos-dock@vinnytherobot.github.io/schemas/"
+                  "org.gnome.shell.extensions.macosdock.gschema.xml").read_text()
+        self.assertIn('name="auto-hide-delay"', schema)
+        motion = read_json(ROOT / "config/motion.json")
+        self.assertGreaterEqual(motion["dock"]["auto_hide_delay_ms"], 0)
+
+
 class BundledPackageTests(unittest.TestCase):
     def test_checksum_list_matches_debs(self):
         apt = ROOT / "assets/cache/apt"

@@ -196,7 +196,9 @@ def verify_settings(report: Report, root: Path) -> None:
                               ("dock-blur-enabled", True),
                               ("magnification-spring-stiffness", 320.0),
                               ("magnification-spring-damping", 26.0),
-                              ("magnification-spring-mass", 1.0)):
+                              ("magnification-spring-mass", 1.0),
+                              ("auto-hide", True),
+                              ("auto-hide-delay", 550)):
             actual = u.gsettings_get(macos_schema, key, macos_dir)
             report.add(Check(f"macos-dock-{key}", f"MacOSDock {key}",
                              "pass" if actual == u.to_gvariant(expected) else "fail",

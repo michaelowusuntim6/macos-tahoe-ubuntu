@@ -18,7 +18,7 @@ if __package__ in (None, ""):
 else:
     from . import utilities as u
 
-VERSION = "1.1.1"
+VERSION = "1.1.2"
 INCLUDE = [
     "README.md", "docs",
     "install.sh", "uninstall.sh", "verify.sh", "repair.sh", "export.sh",

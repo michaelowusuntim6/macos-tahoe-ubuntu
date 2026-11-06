@@ -163,6 +163,7 @@ class ConfigApplier:
                 "magnification-spring-damping": md.get("spring", {}).get("damping", 26.0),
                 "magnification-spring-mass": md.get("spring", {}).get("mass", 1.0),
                 "animation-duration": md.get("show_hide_duration_ms", 220),
+                "auto-hide-delay": md.get("auto_hide_delay_ms", 550),
                 "bounce-on-launch": md.get("bounce_on_launch", True),
             })
         palette = u.read_json(self.root / f"config/palette-{mode}.json")
