@@ -132,6 +132,16 @@ def main() -> int:
         entry = spec["modes"].get(mode)
         if not entry:
             return
+        wallpapers = spec.get("wallpapers", {})
+        wallpaper_dir = data_home() / "backgrounds/macos-tahoe"
+        light_wall = wallpaper_dir / wallpapers.get("light", "tahoe-light.jpg")
+        dark_wall = wallpaper_dir / wallpapers.get("dark", "tahoe-dark.jpg")
+        if light_wall.exists() and dark_wall.exists():
+            gset("org.gnome.desktop.background", "picture-uri",
+                 f"'file://{light_wall}'")
+            gset("org.gnome.desktop.background", "picture-uri-dark",
+                 f"'file://{dark_wall}'")
+            gset("org.gnome.desktop.background", "picture-options", "'zoom'")
         gset("org.gnome.desktop.interface", "gtk-theme", f"'{entry['gtk_theme']}'")
         gset("org.gnome.desktop.interface", "icon-theme", f"'{entry['icon_theme']}'")
         if user_theme_schema.exists():

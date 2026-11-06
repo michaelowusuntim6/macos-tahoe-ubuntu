@@ -269,6 +269,16 @@ window, .background {{
   background-image: linear-gradient(160deg, {win1}, {win2});
   color: {text};
 }}
+/* Desktop Icons NG paints a full-screen GTK window. It must stay transparent
+ * so the Shell wallpaper remains visible behind the icons. */
+window.desktopwindow,
+window.desktopwindow.background,
+.desktopwindow {{
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}}
 headerbar, .titlebar, window.csd > .titlebar, window.csd > headerbar {{
   background-image: linear-gradient(to bottom, {bar1}, {bar2});
   border-bottom: 1px solid {border};

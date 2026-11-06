@@ -1,6 +1,6 @@
 # Final Report — macOS Tahoe Liquid Glass for Ubuntu
 
-Completed: 2026-11-06. Project version `1.1.2`.
+Completed: 2026-11-06. Project version `1.1.3`.
 
 This report records the finished desktop, the measured design system, the
 automation framework, verification results and the honest remaining limits.
@@ -184,6 +184,10 @@ Real measurements in `docs/reports/PERFORMANCE_REPORT.md`:
 - Dock auto-hide waited for Shell motion events; Wayland sends pointer events
   over app windows to the client, so the dock stayed visible. Added a 100 ms
   pointer poll while shown and a configurable `auto-hide-delay` (550 ms).
+- Desktop Icons NG's full-screen GTK window inherited the global GTK window
+  background and obscured the wallpaper; `window.desktopwindow` is now pinned
+  transparent, and the appearance daemon re-asserts the 2560² Tahoe wallpaper
+  URIs at login.
 - MacOSDock deleted its cached custom stylesheet while GNOME Shell still held a
   reference, making User Themes fail with a missing-file error. Cache files are
   now retained.
@@ -202,7 +206,7 @@ Supporting commands: `uninstall.sh`, `verify.sh [--headless]`, `repair.sh`,
 
 ## 18. Installer test results
 
-- **90 unit/integration tests pass** (`python3 -m unittest discover -s tests -t tests`),
+- **92 unit/integration tests pass** (`python3 -m unittest discover -s tests -t tests`),
   covering detection, compatibility, manifests/checksums, backup, rollback,
   idempotency, archive safety, offline bundles, export, uninstall safety.
 - **Fresh-install simulation passes** (`tests/fresh_sim.sh`): exports the release,
@@ -216,8 +220,8 @@ Supporting commands: `uninstall.sh`, `verify.sh [--headless]`, `repair.sh`,
 
 ## 19. Portable export
 
-`./export.sh` produces `releases/macos-tahoe-ubuntu-v1.1.2.tar.gz`,
-`.sha256` and `-manifest.json` (SHA-256 `91942eee4f1ac1e1c08546c1a251ea17a63687671473009c7589f1d4fd68c8a8`). Apple-proprietary wallpapers/references are
+`./export.sh` produces `releases/macos-tahoe-ubuntu-v1.1.3.tar.gz`,
+`.sha256` and `-manifest.json` (SHA-256 `bbbbb704a062a2e54972beb34212204da7485f7db39aabeee3b7784bfb0d8dad`). Apple-proprietary wallpapers/references are
 excluded by default and re-downloaded/verified online at install; if absent,
 the generated fallback wallpapers are installed. Copy the release **off the
 machine** before reinstalling Ubuntu.
@@ -225,9 +229,9 @@ machine** before reinstalling Ubuntu.
 ## 20. Fresh-install execution
 
 ```bash
-tar xzf macos-tahoe-ubuntu-v1.1.2.tar.gz
-cd macos-tahoe-ubuntu-v1.1.2
-sha256sum -c ../macos-tahoe-ubuntu-v1.1.2.sha256
+tar xzf macos-tahoe-ubuntu-v1.1.3.tar.gz
+cd macos-tahoe-ubuntu-v1.1.3
+sha256sum -c ../macos-tahoe-ubuntu-v1.1.3.sha256
 ./install.sh
 # log out and back in
 ```

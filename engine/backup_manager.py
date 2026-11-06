@@ -19,7 +19,7 @@ from .system_detect import detect
 
 log = logging.getLogger("engine")
 
-PROJECT_VERSION = "1.1.2"
+PROJECT_VERSION = "1.1.3"
 
 
 def _now() -> str:

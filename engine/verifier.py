@@ -118,6 +118,10 @@ def verify_files(report: Report) -> None:
                          "pass" if has_glass else "fail", str(css)))
     gtk4 = _config("gtk-4.0/gtk.css")
     gtk4_text = gtk4.read_text(encoding="utf-8", errors="replace") if gtk4.exists() else ""
+    gtk3_text = (_config("gtk-3.0/gtk.css").read_text(encoding="utf-8", errors="replace")
+                 if _config("gtk-3.0/gtk.css").exists() else "")
+    report.add(Check("ding-transparent", "Desktop Icons window stays transparent",
+                     "pass" if "window.desktopwindow" in gtk3_text else "fail"))
     report.add(Check("liquid-gtk4", "GTK4 glass + dark media query",
                      "pass" if "prefers-color-scheme: dark" in gtk4_text
                      and "generate_glass.py" in gtk4_text else "fail"))

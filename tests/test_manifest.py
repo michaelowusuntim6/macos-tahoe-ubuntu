@@ -118,6 +118,19 @@ class GtkCssTests(unittest.TestCase):
         self.assertIn("background-color: transparent", css)
 
 
+class WallpaperIntegrationTests(unittest.TestCase):
+    def test_desktop_window_excluded_from_gtk_background(self):
+        for path in sorted((ROOT / "assets/gtk").glob("*.css")):
+            with self.subTest(path=path.name):
+                text = path.read_text()
+                self.assertIn("window.desktopwindow", text)
+
+    def test_appearance_daemon_enforces_wallpapers(self):
+        text = (ROOT / "engine/appearance_follow.py").read_text()
+        self.assertIn("picture-uri", text)
+        self.assertIn("wallpapers", text)
+
+
 class AutoHideTests(unittest.TestCase):
     def test_dock_autohide_polls_pointer(self):
         js = (ROOT / "extensions/macos-dock@vinnytherobot.github.io/lib/dockVisibility.js").read_text()

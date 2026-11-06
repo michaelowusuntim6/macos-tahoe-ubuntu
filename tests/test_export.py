@@ -49,7 +49,7 @@ class ExportTests(unittest.TestCase):
     def test_required_files_present(self):
         with tarfile.open(self.result["archive"]) as tf:
             names = set(tf.getnames())
-        prefix = "macos-tahoe-ubuntu-v1.1.2"
+        prefix = "macos-tahoe-ubuntu-v1.1.3"
         for required in ("install.sh", "uninstall.sh", "verify.sh", "repair.sh",
                          "export.sh", "engine/main.py", "engine/exporter.py",
                          "config/desktop.json", "manifests/components.lock.json",
@@ -66,7 +66,7 @@ class ExportTests(unittest.TestCase):
         with tarfile.open(self.result["archive"]) as tf:
             for name in ("install.sh", "uninstall.sh", "verify.sh",
                          "repair.sh", "export.sh"):
-                member = tf.getmember(f"macos-tahoe-ubuntu-v1.1.2/{name}")
+                member = tf.getmember(f"macos-tahoe-ubuntu-v1.1.3/{name}")
                 self.assertTrue(member.mode & 0o100, f"{name} is not executable")
 
     def test_proprietary_assets_excluded_by_default(self):

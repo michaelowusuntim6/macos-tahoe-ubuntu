@@ -349,7 +349,12 @@ def install_appearance_runtime(root: Path, *, mode: str,
             pal["colors"]["surface"]
 
     profiles = u.read_json(root / "config/appearance-profiles.json")["modes"]
-    spec = {"schema_version": 1, "modes": {}}
+    spec = {"schema_version": 1,
+            "wallpapers": {
+                "light": profiles["light"]["wallpaper"],
+                "dark": profiles["dark"]["wallpaper"],
+            },
+            "modes": {}}
     for mode_name in ("light", "dark"):
         pal = u.read_json(root / f"config/palette-{mode_name}.json")
         spec["modes"][mode_name] = {

@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.3 — 2026-11-06 — Wallpaper stays visible after login
+
+- **Desktop Icons NG no longer covers the wallpaper.** DING tags its
+  full-screen desktop window with the `desktopwindow` CSS class; our GTK
+  `window, .background` gradient was inherited by it, painting an opaque sheet
+  over the Shell wallpaper. The GTK3/GTK4 layers now force
+  `window.desktopwindow` to be transparent.
+- **The appearance daemon now enforces the Tahoe wallpapers at login and on
+  Light/Dark changes.** If another component rewrites `picture-uri` to a huge
+  6016² original (which the Intel GPU cannot render reliably) or to a missing
+  file, login restores the installed 2560² Tahoe light/dark images.
+- Added regression tests for the DING transparency rule and wallpaper
+  enforcement; verification checks the DING rule.
+- Tests: 92.
+
 ## 1.1.2 — 2026-11-06 — Reliable idle auto-hide
 
 - **Auto-hide no longer depends on pointer movement.** On Wayland, motion

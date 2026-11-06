@@ -16,7 +16,7 @@ from .state_manager import State
 
 log = logging.getLogger("engine")
 
-PROJECT_VERSION = "1.1.2"
+PROJECT_VERSION = "1.1.3"
 PROFILES = ("full", "lightweight", "visual-only", "repair")
 
 PHASES = ["backup", "assets", "extensions", "spotlight", "desktop", "apps",
