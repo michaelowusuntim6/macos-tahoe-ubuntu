@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "modes": {
+    "dark": {
+      "gtk_theme": "TPCT-Mac-Dark",
+      "shell_theme": "TPCT-Mac-Dark",
+      "icon_theme": "WhiteSur-dark",
+      "wallpaper": "tahoe-dark.jpg",
+      "color_scheme": "prefer-dark",
+      "rofi_theme": "tahoe-dark.rasi"
+    },
+    "light": {
+      "gtk_theme": "TPCT-Mac-Light",
+      "shell_theme": "TPCT-Mac-Light",
+      "icon_theme": "WhiteSur-light",
+      "wallpaper": "tahoe-light.jpg",
+      "color_scheme": "prefer-light",
+      "rofi_theme": "tahoe-light.rasi"
+    }
+  }
+}

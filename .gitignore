@@ -1,0 +1,72 @@
+# ── Machine-specific state and recovery data ─────────────────────────────
+state/*
+!state/.gitkeep
+backups/*
+!backups/.gitkeep
+logs/*
+!logs/.gitkeep
+reports/*
+!reports/.gitkeep
+releases/*
+!releases/.gitkeep
+runtime/
+
+# ── Proprietary Apple artwork (personal use only, never commit) ──────────
+assets/references/
+assets/wallpapers/apple/
+
+# ── Secrets — never commit tokens or credentials ─────────────────────────
+.env
+.env.*
+!.env.example
+.secrets/
+*.token
+*.pem
+*.key
+id_rsa*
+credentials*.json
+secrets*.json
+*.secret
+
+# ── Python ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+build/
+dist/
+
+# ── Node / tooling caches (not used at runtime) ──────────────────────────
+node_modules/
+npm-debug.log*
+.npm/
+.eslintcache
+
+# ── Editors and OS cruft ─────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Logs, temporary files, downloads ─────────────────────────────────────
+*.log
+*.tmp
+*.temp
+*.part
+*.pid
+.cache/
+downloads/
+tmp/
+
+# ── Generated extension metadata sidecars ────────────────────────────────
+assets/cache/extensions/*.meta.json

@@ -1,0 +1,5 @@
+# Test renders and screenshots can contain private desktop content
+tests/out/
+dist/
+__pycache__/
+.company/runs/

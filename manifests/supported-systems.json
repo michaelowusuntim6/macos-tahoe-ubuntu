@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "description": "Systems the project has been validated against. Anything else requires an explicit opt-in.",
+  "profiles": [
+    {
+      "id": "ubuntu-26.04-gnome50",
+      "distribution": "ubuntu",
+      "release": "26.04",
+      "codename": "resolute",
+      "desktop": "gnome",
+      "gnome_major": 50,
+      "sessions": ["wayland", "x11"],
+      "status": "validated",
+      "validated_on": "2026-11-05",
+      "notes": "Primary target: Toshiba Satellite Pro C850-1ER, Intel HD 4000, 1366x768."
+    }
+  ],
+  "requirements": {
+    "min_ram_mb": 4096,
+    "recommended_ram_mb": 8192,
+    "min_free_disk_mb": 2500,
+    "required_commands": ["python3", "gsettings", "gnome-extensions", "dconf"],
+    "required_schemas": [
+      "org.gnome.desktop.interface",
+      "org.gnome.desktop.wm.preferences",
+      "org.gnome.desktop.background",
+      "org.gnome.shell.extensions.dash-to-dock"
+    ]
+  },
+  "policy": {
+    "allow_untested_same_major": false,
+    "allow_unsupported": false,
+    "notes": "A newer point release with the same GNOME major can be used with --allow-untested after reviewing reports/COMPATIBILITY_REPORT.md. A different GNOME major is refused unless --force-unsupported is passed."
+  }
+}

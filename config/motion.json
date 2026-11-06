@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "dock": {
+    "max_scale": 1.45,
+    "falloff_px": 125,
+    "framerate": 60,
+    "spring": {
+      "stiffness": 320.0,
+      "damping": 26.0,
+      "mass": 1.0
+    },
+    "show_hide_duration_ms": 220,
+    "bounce_on_launch": true
+  },
+  "hover": {
+    "duration_ms": 140,
+    "scale": 1.04
+  },
+  "popover": {
+    "duration_ms": 180,
+    "easing": "cubic-bezier(0.16,1,0.3,1)"
+  },
+  "panel": {
+    "duration_ms": 220,
+    "easing": "cubic-bezier(0.22,1,0.36,1)"
+  },
+  "policy": {
+    "adaptive_fps": true,
+    "reduce_on_battery": false,
+    "note": "Dock magnification is a damped spring integrated at the target framerate; neighbouring icons are displaced by the same spring field. Panel/popover transitions use GNOME Shell's compositor animations."
+  }
+}

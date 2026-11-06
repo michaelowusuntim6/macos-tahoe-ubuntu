@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "required": [],
+  "recommended": [
+    {"package": "rofi", "reason": "Spotlight-style search", "fallback": "unpack Ubuntu .deb into runtime/rofi"},
+    {"package": "sassc", "reason": "Rebuilding the theme from SCSS source", "fallback": "bundled pre-built CSS is used"},
+    {"package": "fonts-inter", "reason": "Inter UI font (system-wide)", "fallback": "bundled Inter variable font installed per-user"},
+    {"package": "qt-style-kvantum", "reason": "Themed Qt applications", "fallback": "Qt apps keep their default style"},
+    {"package": "gnome-weather", "reason": "Weather desktop widget data", "fallback": "widget shows no forecast"}
+  ],
+  "forbidden_operations": [
+    "apt upgrade",
+    "apt full-upgrade",
+    "apt dist-upgrade",
+    "adding third-party PPAs",
+    "replacing Ubuntu repositories",
+    "removing packages not installed by this project"
+  ],
+  "policy": {
+    "install_only_missing": true,
+    "never_run_upgrade": true,
+    "sudo": "normal interactive authentication only; never bypassed",
+    "per_user_preferred": true
+  }
+}

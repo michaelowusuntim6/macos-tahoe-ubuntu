@@ -1,0 +1,57 @@
+@import url("./reset.css");
+
+/* macOS Spotlight */
+@define-color selected_bg_color #0a84ff;
+@define-color caret_color #0a84ff;
+
+* { font-family: "SF Pro Text", "Inter Variable", "Inter", sans-serif; }
+
+.app {
+    background-color: rgba(38, 38, 42, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 26px;
+    /* No drop shadow: Ulauncher's window is barely larger than the box, so a
+       shadow gets clipped into a visible grey rectangle. */
+    box-shadow: none;
+    padding: 0 4px;
+}
+
+.input {
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 20px;
+    font-weight: 400;
+    padding: 0 10px;
+    min-height: 0;
+    /* Ulauncher's layout adds 15px above and below the field; trim to ~7px. */
+    margin-top: -8px;
+    margin-bottom: -8px;
+    margin-left: -8px;
+}
+
+.input *:selected, .input *:focus, *:selected:focus {
+    background-color: alpha(@selected_bg_color, 0.35);
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.result-box { padding: 0 6px 6px 6px; }
+
+.item-box {
+    border-radius: 10px;
+    padding: 4px 8px;
+}
+.item-name { color: rgba(255, 255, 255, 0.92); font-size: 14px; font-weight: 500; }
+.item-text { color: rgba(255, 255, 255, 0.55); font-size: 12px; }
+.item-shortcut { color: rgba(255, 255, 255, 0.55); font-size: 11px; }
+
+.selected.item-box {
+    background-color: #0a84ff;
+    border: none;
+}
+.selected.item-box .item-name,
+.selected.item-box .item-text,
+.selected.item-box .item-shortcut { color: #ffffff; }
+
+.prefs-btn { opacity: 0.6; border-radius: 999px; }
+.prefs-btn:hover { opacity: 1; background-color: alpha(@selected_bg_color, 0.2); }
+
+.no-window-shadow { margin: -20px; }

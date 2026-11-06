@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "description": "Chooses a sensible default install profile and effect budget for the detected GPU/RAM.",
+  "rules": [
+    {
+      "id": "intel-hd-4000",
+      "match_gpu": ["Intel HD Graphics 4000", "Ivy Bridge", "3rd Gen Core processor Graphics"],
+      "recommended_profile": "lightweight",
+      "effects": {"panel_blur": false, "animation_scale": 1.0, "dock_icon_size": 40},
+      "notes": "Ivy Bridge GT2 has no fast blur. The theme's static translucency is used instead of live backdrop blur."
+    },
+    {
+      "id": "low-memory",
+      "match_max_ram_mb": 6144,
+      "recommended_profile": "lightweight",
+      "effects": {"panel_blur": false, "animation_scale": 1.0, "dock_icon_size": 38}
+    },
+    {
+      "id": "default",
+      "recommended_profile": "full",
+      "effects": {"panel_blur": true, "animation_scale": 1.0, "dock_icon_size": 44}
+    }
+  ]
+}

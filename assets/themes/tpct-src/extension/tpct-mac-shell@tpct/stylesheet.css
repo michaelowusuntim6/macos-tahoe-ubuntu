@@ -1,0 +1,152 @@
+.tpct-appmenu-box {
+  spacing: 0;
+}
+
+#panel .panel-button.tpct-appmenu-item {
+  -natural-hpadding: 9px;
+  -minimum-hpadding: 6px;
+}
+
+.tpct-appmenu-name {
+  font-weight: 700;
+}
+
+.tpct-appmenu-label {
+  font-weight: 500;
+}
+
+.tpct-accel {
+  padding-left: 28px;
+  font-feature-settings: "tnum";
+  opacity: 0.55;
+}
+
+.popup-menu-item:hover .tpct-accel,
+.popup-menu-item:focus .tpct-accel {
+  opacity: 0.85;
+}
+
+.tpct-appmenu-menu .popup-menu-content {
+  min-width: 220px;
+}
+
+/* ───────────── Desktop widgets ───────────── */
+
+.tpct-widget {
+  border-radius: 22px;
+  padding: 14px 16px;
+}
+.tpct-widgets-dark .tpct-widget {
+  background-color: rgba(28, 28, 31, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: none;
+}
+.tpct-widgets-light .tpct-widget {
+  background-color: rgba(250, 250, 252, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  color: rgba(0, 0, 0, 0.85);
+  box-shadow: none;
+}
+.tpct-widget-clock { padding: 0; }
+
+.tpct-widget-caption { font-size: 11px; font-weight: 600; opacity: 0.6; }
+
+/* Calendar */
+.tpct-widget-calendar { spacing: 12px; }
+.tpct-cal-today { width: 118px; }
+.tpct-cal-weekday { color: #ff3b30; font-size: 12px; font-weight: 700; }
+.tpct-cal-day { font-size: 46px; font-weight: 500; padding-top: 2px; }
+.tpct-cal-events { spacing: 4px; }
+.tpct-cal-note { font-size: 11px; font-weight: 500; opacity: 0.55; }
+.tpct-cal-event { spacing: 6px; }
+.tpct-cal-event-bar { width: 3px; border-radius: 2px; background-color: #ff3b30; }
+.tpct-cal-event-title { font-size: 11px; font-weight: 700; }
+.tpct-cal-event-time { font-size: 10px; opacity: 0.6; }
+.tpct-cal-month-name { color: #ff3b30; font-size: 11px; font-weight: 700; padding-bottom: 2px; }
+.tpct-cal-head { font-size: 9px; font-weight: 700; opacity: 0.5; }
+.tpct-cal-cell { width: 19px; height: 19px; border-radius: 999px; font-size: 10px; font-weight: 600; }
+.tpct-cal-cell-today { background-color: #ff3b30; color: #ffffff; }
+
+/* World clock */
+.tpct-widget-world { spacing: 4px; padding: 14px 10px; }
+.tpct-world-item { spacing: 4px; }
+.tpct-world-city { font-size: 11px; font-weight: 700; }
+.tpct-world-offset { font-size: 9px; font-weight: 500; opacity: 0.55; }
+
+/* Music */
+.tpct-widget-music { spacing: 14px; }
+.tpct-music-art { border-radius: 12px; background-color: rgba(128, 128, 128, 0.25); }
+.tpct-music-art-icon { color: rgba(255, 255, 255, 0.7); }
+.tpct-music-info { spacing: 2px; }
+.tpct-music-source { color: #fa2d48; font-size: 10px; font-weight: 700; }
+.tpct-music-title { font-size: 13px; font-weight: 700; }
+.tpct-music-artist { font-size: 12px; opacity: 0.6; }
+.tpct-music-controls { spacing: 6px; padding-top: 8px; }
+.tpct-music-button { border-radius: 999px; padding: 6px; }
+.tpct-music-button:hover { background-color: rgba(128, 128, 128, 0.25); }
+
+/* Photos */
+.tpct-widget-photo { padding: 12px; background-color: rgba(128, 128, 128, 0.3); }
+.tpct-photo-caption { color: #ffffff; font-size: 13px; font-weight: 700; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
+
+.tpct-widget:hover { border-color: rgba(255, 255, 255, 0.28); }
+
+/* Battery */
+.tpct-widget-battery { spacing: 6px; }
+.tpct-battery-percent { font-size: 18px; font-weight: 700; }
+
+/* Weather — blue sky card like macOS */
+.tpct-widgets-dark .tpct-widget-weather,
+.tpct-widgets-light .tpct-widget-weather {
+  background-gradient-direction: vertical;
+  background-gradient-start: #2d7fe0;
+  background-gradient-end: #6fb3f2;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+.tpct-weather-city { font-size: 13px; font-weight: 700; }
+.tpct-weather-temp { font-size: 40px; font-weight: 300; }
+.tpct-weather-icon { color: #ffffff; padding-bottom: 2px; }
+.tpct-weather-summary { font-size: 11px; font-weight: 600; }
+
+
+/* ───────────── Apple menu ───────────── */
+#panel .panel-button.tpct-apple-button { -natural-hpadding: 12px; -minimum-hpadding: 8px; }
+.tpct-apple-icon { icon-size: 16px; }
+
+/* Force Quit Applications */
+.tpct-force-quit .modal-dialog-content-box { spacing: 8px; }
+.tpct-force-quit-title { font-size: 15px; font-weight: 700; }
+.tpct-force-quit-hint { font-size: 12px; opacity: 0.65; }
+.tpct-force-quit-scroll { min-height: 220px; max-height: 320px; min-width: 360px; border-radius: 10px; background-color: rgba(128, 128, 128, 0.12); padding: 4px; }
+.tpct-force-quit-row { border-radius: 6px; padding: 4px 8px; }
+.tpct-force-quit-row-box { spacing: 8px; }
+.tpct-force-quit-row:hover { background-color: rgba(128, 128, 128, 0.18); }
+.tpct-force-quit-row:checked { background-color: #0a84ff; color: #ffffff; }
+
+/* Widget being dragged */
+.tpct-widget:dragging { border-color: rgba(255, 255, 255, 0.6); }
+
+/* Traffic lights in the menu bar for a maximized window */
+.tpct-window-buttons { spacing: 8px; padding: 0 8px 0 4px; }
+.tpct-window-button {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  padding: 0;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.15);
+}
+.tpct-window-button.close { background-color: #ff5f57; }
+.tpct-window-button.minimize { background-color: #febc2e; }
+.tpct-window-button.maximize { background-color: #28c840; }
+/* Glyphs appear only while the group is hovered (macOS); the box has track_hover. */
+.tpct-window-button-icon { icon-size: 8px; color: transparent; }
+.tpct-window-buttons:hover .tpct-window-button-icon { color: rgba(0, 0, 0, 0.6); }
+
+/* Cascading submenus */
+.tpct-cascade-item { spacing: 8px; }
+.tpct-cascade-arrow { icon-size: 12px; opacity: 0.6; }
+.popup-menu-item:hover .tpct-cascade-arrow, .popup-menu-item:active .tpct-cascade-arrow { opacity: 1; }
+.tpct-cascade-menu { -arrow-rise: 0; -boxpointer-gap: 2px; }
+.tpct-widgets-dimmed .tpct-widget { box-shadow: none; }

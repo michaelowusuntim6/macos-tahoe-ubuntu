@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "mode": "light",
+  "source_wallpaper": "assets/references/wallpaper-light.jpg",
+  "source_wallpaper_sha256": "35d5b7ef4142f4061c38a9fdd1ad4b4dcfaee000d01213676cc274da3d53627f",
+  "colors": {
+    "background_top": "#3275c0",
+    "background_bottom": "#0d2957",
+    "background_deep": "#3072bd",
+    "surface": "#fffcfe",
+    "surface_raised": "#fffcfe",
+    "toolbar": "#ffffff",
+    "control_center": "#3087b7",
+    "panel_sample": "#3275c0",
+    "dock_sample": "#0d2957",
+    "accent": "#097efa",
+    "accent_secondary": "#102e84",
+    "accent_soft": "#5fabfc",
+    "highlight": "#dcd7b6",
+    "shadow": "#02054d",
+    "text_primary": "#1d1d1f",
+    "text_secondary": "rgba(60,60,67,0.62)",
+    "border": "#ffffff",
+    "dominant": [
+      "#06175a",
+      "#89b5cb",
+      "#3175c1",
+      "#c5cbc7",
+      "#1a4094",
+      "#458bcd"
+    ]
+  },
+  "materials": {
+    "panel": {
+      "base": "#3275c0",
+      "alpha": 0.3,
+      "blur_sigma": 18,
+      "brightness": 1.02,
+      "saturation": 1.25,
+      "border": "#ffffff",
+      "border_alpha": 0.55,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.16,
+      "shadow": "#02054d",
+      "shadow_alpha": 0.28,
+      "radius": 14,
+      "inset": 0
+    },
+    "dock": {
+      "base": "#0d2957",
+      "alpha": 0.3,
+      "blur_sigma": 20,
+      "brightness": 1.1,
+      "saturation": 1.35,
+      "border": "#ffffff",
+      "border_alpha": 0.55,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.22,
+      "shadow": "#000000",
+      "shadow_alpha": 0.35,
+      "radius": 26,
+      "inset": 8
+    },
+    "control_center": {
+      "base": "#3087b7",
+      "alpha": 0.42,
+      "blur_sigma": 26,
+      "brightness": 1.04,
+      "saturation": 1.3,
+      "border": "#ffffff",
+      "border_alpha": 0.45,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.18,
+      "shadow": "#000000",
+      "shadow_alpha": 0.42,
+      "radius": 28,
+      "inset": 0
+    },
+    "popover": {
+      "base": "#fffcfe",
+      "alpha": 0.74,
+      "blur_sigma": 22,
+      "brightness": 1.02,
+      "saturation": 1.18,
+      "border": "#ffffff",
+      "border_alpha": 0.5,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.12,
+      "shadow": "#000000",
+      "shadow_alpha": 0.38,
+      "radius": 16,
+      "inset": 0
+    },
+    "notification": {
+      "base": "#fffcfe",
+      "alpha": 0.82,
+      "blur_sigma": 18,
+      "brightness": 1.0,
+      "saturation": 1.12,
+      "border": "#ffffff",
+      "border_alpha": 0.55,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.1,
+      "shadow": "#000000",
+      "shadow_alpha": 0.32,
+      "radius": 20,
+      "inset": 0
+    },
+    "toolbar": {
+      "base": "#ffffff",
+      "alpha": 0.72,
+      "blur_sigma": 16,
+      "brightness": 1.02,
+      "saturation": 1.1,
+      "border": "#ffffff",
+      "border_alpha": 0.4,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.08,
+      "shadow": "#000000",
+      "shadow_alpha": 0.18,
+      "radius": 0,
+      "inset": 0
+    },
+    "sidebar": {
+      "base": "#fffcfe",
+      "alpha": 0.55,
+      "blur_sigma": 14,
+      "brightness": 1.0,
+      "saturation": 1.05,
+      "border": "#ffffff",
+      "border_alpha": 0.3,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.05,
+      "shadow": "#000000",
+      "shadow_alpha": 0.1,
+      "radius": 0,
+      "inset": 0
+    },
+    "control_tile": {
+      "base": "#3087b7",
+      "alpha": 0.58,
+      "blur_sigma": 20,
+      "brightness": 1.08,
+      "saturation": 1.28,
+      "border": "#ffffff",
+      "border_alpha": 0.5,
+      "highlight": "#dcd7b6",
+      "highlight_alpha": 0.14,
+      "shadow": "#000000",
+      "shadow_alpha": 0.22,
+      "radius": 22,
+      "inset": 0
+    }
+  },
+  "text": {
+    "primary": "#1d1d1f",
+    "secondary": "rgba(60,60,67,0.62)",
+    "on_accent": "#ffffff"
+  },
+  "motion": {
+    "dock_magnification": {
+      "max_scale": 1.34,
+      "falloff_px": 112,
+      "spring_stiffness": 320.0,
+      "spring_damping": 26.0,
+      "spring_mass": 1.0,
+      "framerate": 60,
+      "duration_ms": 170
+    },
+    "panel": {
+      "duration_ms": 220,
+      "easing": "cubic-bezier(0.22,1,0.36,1)"
+    },
+    "popover": {
+      "duration_ms": 180,
+      "easing": "cubic-bezier(0.16,1,0.3,1)"
+    },
+    "hover": {
+      "duration_ms": 140,
+      "scale": 1.04
+    }
+  },
+  "luminance": {
+    "wallpaper": {
+      "top_band": {
+        "mean": "#3276c0",
+        "median": "#3275c0",
+        "luminance": {
+          "p2": 105,
+          "p5": 105,
+          "p25": 106,
+          "p50": 108,
+          "p75": 111,
+          "p95": 114,
+          "p98": 116
+        },
+        "darkest_2pct": "#3072bd",
+        "brightest_2pct": "#377fc6"
+      },
+      "upper": {
+        "mean": "#74a6cd",
+        "median": "#71a9ce",
+        "luminance": {
+          "p2": 115,
+          "p5": 117,
+          "p25": 134,
+          "p50": 160,
+          "p75": 181,
+          "p95": 200,
+          "p98": 203
+        },
+        "darkest_2pct": "#357bc4",
+        "brightest_2pct": "#cbcdca"
+      },
+      "middle": {
+        "mean": "#5e89c8",
+        "median": "#4785c9",
+        "luminance": {
+          "p2": 52,
+          "p5": 61,
+          "p25": 91,
+          "p50": 126,
+          "p75": 175,
+          "p95": 212,
+          "p98": 213
+        },
+        "darkest_2pct": "#0d2eac",
+        "brightest_2pct": "#dcd7b6"
+      },
+      "lower": {
+        "mean": "#3a5d98",
+        "median": "#36629b",
+        "luminance": {
+          "p2": 10,
+          "p5": 15,
+          "p25": 49,
+          "p50": 92,
+          "p75": 126,
+          "p95": 164,
+          "p98": 172
+        },
+        "darkest_2pct": "#02054d",
+        "brightest_2pct": "#99b8ca"
+      },
+      "bottom_band": {
+        "mean": "#0f2757",
+        "median": "#0d2957",
+        "luminance": {
+          "p2": 4,
+          "p5": 5,
+          "p25": 19,
+          "p50": 38,
+          "p75": 53,
+          "p95": 71,
+          "p98": 76
+        },
+        "darkest_2pct": "#00012d",
+        "brightest_2pct": "#2d557c"
+      }
+    },
+    "ui": {
+      "control_center": {
+        "median": "#3087b7",
+        "p5": 61,
+        "p95": 249
+      },
+      "panel": {
+        "median": "#4c8498",
+        "p5": 0,
+        "p95": 250
+      },
+      "window": {
+        "median": "#f4eeea",
+        "p5": 56,
+        "p95": 255
+      },
+      "toolbar": {
+        "median": "#ffffff",
+        "p5": 234,
+        "p95": 255
+      },
+      "sidebar": {
+        "median": "#fffcfe",
+        "p5": 212,
+        "p95": 255
+      },
+      "dock": {
+        "median": "#4f8ab6",
+        "p5": 27,
+        "p95": 244
+      }
+    }
+  }
+}

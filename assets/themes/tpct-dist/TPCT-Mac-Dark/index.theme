@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=TPCT-Mac-Dark
+Comment=macOS-style theme for GNOME
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=TPCT-Mac-Dark
+IconTheme=WhiteSur-dark
+CursorTheme=McMojave-cursors

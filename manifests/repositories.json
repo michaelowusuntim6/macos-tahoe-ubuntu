@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "repositories": {
+    "tpct": {
+      "url": "https://github.com/TPCT/tpct-mac-theme",
+      "license": "GPL-3.0-or-later",
+      "pinned_commit": "4407330a30f9dcb6e5538553e57bdf48518e6892",
+      "vendored": true,
+      "reviewed_by": "project maintainer",
+      "review_notes": "install.sh reviewed; project does not execute upstream install.sh. Only the SCSS sources, pre-built CSS and the shell extension are used, with our own installation logic."
+    },
+    "whiteSur-icons": {
+      "url": "https://github.com/vinceliuice/WhiteSur-icon-theme",
+      "license": "GPL-3.0",
+      "pinned_commit": "73d8040da51a9ed74e47c7366e7e9ff437601a5c",
+      "vendored": true
+    },
+    "whiteSur-cursors": {
+      "url": "https://github.com/vinceliuice/WhiteSur-cursors",
+      "license": "GPL-3.0",
+      "pinned_commit": "e190baf618ed95ee217d2fd45589bd309b37672b",
+      "vendored": true
+    },
+    "inter": {
+      "url": "https://github.com/rsms/inter",
+      "license": "OFL-1.1",
+      "pinned_version": "4.1",
+      "vendored": true
+    },
+    "extensions.gnome.org": {
+      "url": "https://extensions.gnome.org",
+      "license": "per-extension (see LICENSES.md)",
+      "pinned": [
+        "user-theme 79",
+        "blur-my-shell 77"
+      ],
+      "download_policy": "exact pinned version_tag; metadata shell-version must include the detected GNOME major"
+    },
+    "ubuntu-archive": {
+      "url": "http://archive.ubuntu.com/ubuntu",
+      "license": "per-package",
+      "usage": "rofi and its runtime libraries when not already installed; never upgrades."
+    },
+    "macos-dock": {
+      "url": "https://github.com/vinnytherobot/MacOSDock",
+      "license": "MIT",
+      "pinned_version": 18,
+      "vendored": true,
+      "review_notes": "MIT; vendored and locally patched for a damped-spring magnification integrator and configurable backdrop-blur sigma. metadata.json untouched."
+    },
+    "apple-wallpapers": {
+      "urls": [
+        "https://wallpapers.betaprofiles.com/wallpapers/2026/05/macos-tahoe-26-wallpaper-light-092246d4.jpg",
+        "https://wallpapers.betaprofiles.com/wallpapers/2026/05/macos-tahoe-26-wallpaper-dark-2d3043b1.jpg"
+      ],
+      "license": "Proprietary (Apple Inc.) \u2014 personal use only",
+      "policy": "downloaded online with pinned SHA-256; never included in default portable releases; offline uses generated fallback"
+    }
+  },
+  "security": {
+    "https_only_for_downloads": true,
+    "verify_sha256": true,
+    "execute_upstream_scripts": false,
+    "modify_extension_metadata": false
+  }
+}

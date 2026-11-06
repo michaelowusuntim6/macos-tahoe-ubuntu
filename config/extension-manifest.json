@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "extensions": {
+    "ubuntu-dock@ubuntu.com": {
+      "role": "dock-replaced",
+      "action": "disable",
+      "reason": "Replaced by MacOSDock, which provides the floating macOS dock with spring magnification that Ubuntu Dock/Dash to Dock cannot. The extension stays installed so it can be re-enabled at any time; MacOSDock supplies the equivalent launch/switch/preview/autohide functionality. Because Ubuntu's session mode force-enables this extension, it is also listed in disabled-extensions; that blacklist is what actually prevents it from loading."
+    },
+    "ding@rastersoft.com": {
+      "role": "desktop-icons",
+      "action": "keep-enabled",
+      "reason": "Desktop Icons NG provides the macOS-like desktop; its icons are themed by WhiteSur."
+    },
+    "ubuntu-appindicators@ubuntu.com": {
+      "role": "tray",
+      "action": "keep-enabled",
+      "reason": "Legacy tray/AppIndicator support is required by Telegram, Steam and similar apps."
+    },
+    "gsconnect@andyholmes.github.io": {
+      "role": "phone-integration",
+      "action": "keep-enabled",
+      "reason": "User relies on KDE Connect integration; unrelated to theming."
+    },
+    "tiling-assistant@ubuntu.com": {
+      "role": "window-management",
+      "action": "keep-enabled",
+      "reason": "Preserves Ubuntu window tiling; macOS-style traffic lights remain functional."
+    },
+    "snapd-prompting@canonical.com": {
+      "role": "snap",
+      "action": "keep-enabled",
+      "reason": "Snap permission prompts."
+    },
+    "snapd-search-provider@canonical.com": {
+      "role": "snap",
+      "action": "keep-disabled-default",
+      "reason": "Search provider; left at its original state."
+    },
+    "web-search-provider@ubuntu.com": {
+      "role": "search",
+      "action": "keep-disabled-default",
+      "reason": "Search provider; left at its original state."
+    },
+    "user-theme@gnome-shell-extensions.gcampax.github.com": {
+      "role": "shell-theme",
+      "action": "install-enable",
+      "source": "extensions.gnome.org",
+      "reason": "Loads the TPCT GNOME Shell theme (top bar, menus, Quick Settings, notifications, OSD)."
+    },
+    "tpct-mac-shell@tpct": {
+      "role": "global-menu",
+      "action": "install-enable",
+      "source": "bundled (GPL-3.0)",
+      "reason": "Power-of-two-free global menu bar: focused app menus, Finder menus, Apple-inspired system menu, right-aligned clock."
+    },
+    "blur-my-shell@aunetx": {
+      "role": "translucency",
+      "action": "install-enable",
+      "source": "extensions.gnome.org",
+      "reason": "Real backdrop blur for the menu bar and Control Center/popovers. Panel and popup blur are static-cached (static-blur=true) so idle GPU cost stays low; the dock uses its own Shell.BlurEffect."
+    },
+    "macos-dock@vinnytherobot.github.io": {
+      "role": "dock",
+      "action": "install-enable",
+      "source": "bundled (MIT), patched spring physics and glass",
+      "reason": "macOS-style floating dock with magnification, running indicators, click-to-minimize, bounce and autohide. Vendored so the spring integrator and dock blur sigma are deterministic."
+    }
+  },
+  "rejected": [
+    {
+      "candidate": "Dash2Dock Animated (icedman/dash2dock-lite)",
+      "reason": "GNOME 50 metadata is present, but the extension did not render a dock in the isolated GNOME 50 nested shell during testing. MacOSDock rendered correctly, supports magnification and exposes a clean custom-CSS hook, so it was selected instead."
+    },
+    {
+      "candidate": "Search Light (icedman)",
+      "reason": "Its published metadata does not list GNOME 50 (shell_version_map stops at 49). Forcing metadata is forbidden."
+    },
+    {
+      "candidate": "fildem / X11 global-menu implementations",
+      "reason": "X11-only; the session is Wayland. TPCT's extension supports GTK GMenuModel over D-Bus and dbusmenu for XWayland."
+    }
+  ]
+}

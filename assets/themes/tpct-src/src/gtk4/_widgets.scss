@@ -1,0 +1,932 @@
+// Widget rules. User-priority CSS overrides libadwaita regardless of selector
+// specificity, so every state of a widget we touch is restyled here.
+
+$ease: 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$focus-ring: 0 0 0 3px a($mac_accent, 0.45);
+
+window, .background, popover, tooltip, dialog, label {
+  font-family: $font-family;
+}
+
+// ───────────────────────── Windows ─────────────────────────
+
+window.csd, window.csd > contents {
+  border-radius: $radius-window;
+}
+// Title bars are rounded on top only; they sit flush on the window content.
+window.csd > .titlebar, window.csd > headerbar,
+headerbar.titlebar, headerbar.default-decoration, window.ssd-frame headerbar {
+  border-radius: $radius-window $radius-window 0 0;
+}
+window.maximized > .titlebar, window.maximized headerbar,
+window.tiled > .titlebar, window.fullscreen headerbar,
+window.maximized.ssd-frame headerbar { border-radius: 0; }
+window.csd {
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.35),
+              0 10px 30px 4px rgba(0, 0, 0, 0.28),
+              0 2px 6px rgba(0, 0, 0, 0.18);
+}
+window.csd:backdrop {
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.25),
+              0 6px 18px 2px rgba(0, 0, 0, 0.18);
+}
+window.maximized, window.fullscreen, window.tiled, window.tiled-top,
+window.tiled-left, window.tiled-right, window.tiled-bottom {
+  border-radius: 0;
+}
+
+// ───────────────────────── Header bars ─────────────────────────
+
+headerbar {
+  min-height: 52px;
+  padding: 0 8px;
+  background-color: $headerbar_bg_color;
+  color: $mac_fg;
+  box-shadow: inset 0 -1px $mac_separator;
+}
+headerbar:backdrop { color: $mac_fg_dim; }
+toolbarview > .top-bar headerbar, .flat headerbar, headerbar.flat,
+.sidebar-pane headerbar, .content-pane headerbar {
+  background: none;
+  box-shadow: none;
+}
+toolbarview > .top-bar.raised headerbar,
+toolbarview > .top-bar.raised { box-shadow: none; }
+toolbarview > .top-bar.raised {
+  box-shadow: inset 0 -1px $mac_separator;
+}
+headerbar .title, windowtitle .title {
+  font-weight: 700;
+  font-size: 13px;
+}
+windowtitle .subtitle { font-size: 11px; color: $mac_fg_dim; }
+
+// Sidebar panes look like the frosted macOS source list.
+.sidebar-pane, .navigation-sidebar, placessidebar, stacksidebar {
+  background-color: $mac_sidebar;
+}
+.sidebar-pane { box-shadow: inset -1px 0 $mac_separator; }
+.sidebar-pane:dir(rtl) { box-shadow: inset 1px 0 $mac_separator; }
+
+// ───────────────────────── Traffic lights ─────────────────────────
+
+windowcontrols { border-spacing: 8px; margin: 0 4px; }
+// Listed with headerbar/.image-button so these beat the header-bar button rules
+// (window controls are image buttons inside the header bar).
+windowcontrols > button,
+windowcontrols > button:hover,
+windowcontrols > button:active,
+headerbar windowcontrols > button.image-button:not(.titlebutton):not(.suggested-action),
+headerbar windowcontrols > button.image-button:not(.titlebutton):not(.suggested-action):hover,
+headerbar windowcontrols > button.image-button:not(.titlebutton):not(.suggested-action):active,
+headerbar.default-decoration windowcontrols > button {
+  min-width: 14px;
+  min-height: 14px;
+  padding: 0;
+  margin: 0;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+windowcontrols > button > image,
+headerbar.default-decoration windowcontrols > button > image {
+  min-width: 12px;
+  min-height: 12px;
+  padding: 1px;
+  -gtk-icon-size: 10px;
+  border-radius: 50%;
+  color: transparent;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.12);
+  transition: none;
+}
+windowcontrols > button.close > image    { background-color: $tl-close; }
+windowcontrols > button.minimize > image { background-color: $tl-minimize; }
+windowcontrols > button.maximize > image { background-color: $tl-maximize; }
+
+windowcontrols:hover > button > image { color: rgba(0, 0, 0, 0.55); }
+windowcontrols > button.close:active > image    { background-color: sh($tl-close, 0.85); }
+windowcontrols > button.minimize:active > image { background-color: sh($tl-minimize, 0.85); }
+windowcontrols > button.maximize:active > image { background-color: sh($tl-maximize, 0.85); }
+
+window:backdrop windowcontrols:not(:hover) > button > image {
+  background-color: $mac_inactive_dot;
+  box-shadow: none;
+}
+
+// ───────────────────────── Buttons ─────────────────────────
+
+button {
+  min-height: 24px;
+  min-width: 16px;
+  padding: 2px 12px;
+  border-radius: $radius-control;
+  border: none;
+  background-color: $mac_control;
+  color: $mac_fg;
+  box-shadow: 0 0 0 0.5px $mac_border, 0 1px 1.5px $mac_shadow;
+  font-weight: 500;
+  transition: background-color $ease, box-shadow $ease;
+}
+button:hover { background-color: $mac_control_hover; }
+button:active, button:checked { background-color: $mac_control_active; }
+button:disabled { color: $mac_fg_disabled; box-shadow: 0 0 0 0.5px $mac_border; }
+button:focus:focus-visible { outline: none; box-shadow: $focus-ring; }
+button.image-button { min-width: 24px; padding: 2px 6px; }
+
+button.suggested-action, button.default {
+  background-color: $mac_accent;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.5px a(black, 0.06), 0 1px 1.5px $mac_shadow;
+}
+button.suggested-action:hover  { background-color: $mac_accent_hover; }
+button.suggested-action:active { background-color: $mac_accent_active; }
+button.suggested-action:disabled { background-color: a($mac_accent, 0.4); color: a(white, 0.7); }
+
+button.destructive-action {
+  background-color: $mac_red;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.5px a(black, 0.06), 0 1px 1.5px $mac_shadow;
+}
+button.destructive-action:hover  { background-color: sh($mac_red, 1.06); }
+button.destructive-action:active { background-color: sh($mac_red, 0.9); }
+
+button.pill { padding: 6px 24px; border-radius: 999px; }
+button.circular { border-radius: 999px; padding: 4px; min-width: 24px; }
+
+// Flat / toolbar buttons: borderless glyphs that get a soft fill on hover.
+button.flat, headerbar button:not(.suggested-action):not(.destructive-action),
+.toolbar button:not(.suggested-action):not(.destructive-action),
+actionbar button:not(.suggested-action):not(.destructive-action),
+menubutton.flat > button, splitbutton.flat > button,
+popover button.flat {
+  background: none;
+  box-shadow: none;
+  color: $mac_fg;
+}
+button.flat:hover, headerbar button:not(.suggested-action):not(.destructive-action):hover,
+.toolbar button:not(.suggested-action):not(.destructive-action):hover,
+actionbar button:not(.suggested-action):not(.destructive-action):hover,
+menubutton.flat > button:hover {
+  background-color: $mac_fill_hover;
+}
+button.flat:active, button.flat:checked,
+headerbar button:not(.suggested-action):not(.destructive-action):active,
+headerbar button:not(.suggested-action):not(.destructive-action):checked,
+.toolbar button:not(.suggested-action):not(.destructive-action):active,
+actionbar button:not(.suggested-action):not(.destructive-action):active,
+menubutton.flat > button:active, menubutton.flat > button:checked {
+  background-color: $mac_fill_active;
+}
+headerbar button { min-height: 28px; border-radius: 999px; }
+headerbar button.image-button { min-width: 28px; padding: 2px 8px; }
+headerbar button:backdrop { color: $mac_fg_dim; }
+
+// ───────────── Linked groups → Tahoe "glass capsule" segmented controls ─────────────
+
+.linked:not(.vertical) {
+  background-color: $mac_fill;
+  border-radius: 999px;
+  padding: 2px;
+  border-spacing: 0;
+}
+headerbar .linked:not(.vertical) { background-color: $mac_fill; }
+.linked:not(.vertical) > button,
+.linked:not(.vertical) > button:hover,
+.linked:not(.vertical) > menubutton > button,
+.linked:not(.vertical) > dropdown > button {
+  border-radius: 999px;
+  background: none;
+  box-shadow: none;
+  min-height: 22px;
+  padding: 1px 12px;
+}
+.linked:not(.vertical) > button.image-button { padding: 1px 8px; }
+.linked:not(.vertical) > button:hover { background-color: $mac_fill_hover; }
+.linked:not(.vertical) > button:checked,
+.linked:not(.vertical) > button:active {
+  background-color: $mac_segment;
+  color: $mac_segment_fg;
+  box-shadow: 0 0 0 0.5px $mac_border, 0 1px 2px $mac_shadow;
+}
+headerbar .linked:not(.vertical) > button { min-height: 26px; }
+
+// Header-bar view switcher: the same compact capsule as linked controls.
+headerbar viewswitcher {
+  background-color: $mac_fill;
+  border-radius: 999px;
+  padding: 2px;
+  border-spacing: 0;
+  min-height: 0;
+  min-width: 0;
+  // The header bar stretches the title widget; CSS cannot set valign.
+  margin: 3px 0;
+}
+headerbar viewswitcher > button:not(.suggested-action):not(.destructive-action) {
+  min-height: 22px;
+  min-width: 0;
+  padding: 1px 12px;
+  border-radius: 999px;
+  margin: 0;
+  background: none;
+  box-shadow: none;
+  &:hover { background-color: $mac_fill_hover; }
+  &:checked {
+    background-color: $mac_segment;
+    color: $mac_segment_fg;
+    box-shadow: 0 0 0 0.5px $mac_border, 0 1px 2px $mac_shadow;
+  }
+}
+headerbar viewswitcher > button > stack > box.wide,
+headerbar viewswitcher > button > stack > box.narrow {
+  border-spacing: 0;
+  margin: 0;
+  padding: 0;
+  label { font-size: 12px; font-weight: 500; }
+}
+headerbar viewswitcher > button > stack > box > indicatorbin {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  > image {
+    -gtk-icon-size: 0;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// ───────────────────────── Entries ─────────────────────────
+
+entry, spinbutton, searchbar entry, text.entry {
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: $radius-control;
+  background-color: $mac_view;
+  color: $mac_fg;
+  border: none;
+  box-shadow: 0 0 0 0.5px $mac_border_strong, inset 0 0.5px 1px $mac_shadow;
+  outline: none;
+  transition: box-shadow $ease;
+}
+entry:focus-within, spinbutton:focus-within {
+  box-shadow: 0 0 0 0.5px $mac_accent, $focus-ring;
+  outline: none;
+}
+entry:disabled, spinbutton:disabled { color: $mac_fg_disabled; background-color: $mac_fill; }
+entry > text > placeholder, entry placeholder { color: $mac_fg_dim; }
+entry.search, searchentry {
+  border-radius: 999px;
+  background-color: $mac_fill;
+  box-shadow: none;
+}
+searchentry:focus-within { box-shadow: 0 0 0 0.5px $mac_accent, $focus-ring; }
+selection { background-color: a($mac_accent, 0.35); color: inherit; }
+
+spinbutton { padding: 0; }
+spinbutton > text { padding: 0 8px; }
+spinbutton > button, spinbutton > button:hover, spinbutton > button:active {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  min-width: 22px;
+  padding: 0 4px;
+  color: $mac_fg_dim;
+  border-left: 1px solid $mac_separator;
+}
+spinbutton > button:hover { color: $mac_fg; background-color: $mac_fill; }
+
+// Dropdowns / combo buttons
+dropdown > button, combobox > box > button, menubutton:not(.flat) > button.text-button {
+  padding: 2px 8px 2px 10px;
+}
+// Pop-up buttons in forms get the macOS blue chevron box; menu buttons in
+// toolbars and inside other controls just show the chevron.
+dropdown > button > box > arrow, menubutton > button > box > arrow {
+  -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+  min-width: 16px;
+  min-height: 16px;
+  -gtk-icon-size: 10px;
+  margin-left: 4px;
+}
+dropdown:not(.flat) > button > box > arrow,
+row dropdown > button > box > arrow {
+  border-radius: 5px;
+  background-color: $mac_accent;
+  color: #ffffff;
+  margin-left: 6px;
+}
+
+// ───────────────────────── Switch ─────────────────────────
+
+switch {
+  min-width: 38px;
+  min-height: 22px;
+  padding: 0;
+  border-radius: 999px;
+  border: none;
+  background-color: $mac_track;
+  box-shadow: inset 0 0 0 0.5px $mac_border;
+  color: transparent;
+  transition: background-color 200ms ease;
+}
+switch:checked { background-color: $mac_accent; box-shadow: none; }
+switch:disabled { opacity: 0.5; }
+switch:focus:focus-visible { outline: none; box-shadow: $focus-ring; }
+switch > image { color: transparent; -gtk-icon-size: 0; }
+switch > slider {
+  min-width: 20px;
+  min-height: 20px;
+  margin: 1px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.22);
+}
+switch:hover > slider { background-color: #ffffff; }
+
+// ───────────────────────── Check & radio ─────────────────────────
+
+checkbutton { border-spacing: 6px; padding: 2px; }
+checkbutton:focus:focus-visible { outline: none; }
+check, radio {
+  min-width: 14px;
+  min-height: 14px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: $mac_control;
+  box-shadow: 0 0 0 0.5px $mac_border_strong, inset 0 0.5px 1px $mac_shadow;
+  color: transparent;
+  -gtk-icon-size: 12px;
+  transition: background-color $ease;
+}
+check { border-radius: 4px; }
+radio { border-radius: 999px; }
+check:hover, radio:hover { background-color: $mac_control_hover; }
+check:checked, check:indeterminate, radio:checked, radio:indeterminate {
+  background-color: $mac_accent;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.5px a(black, 0.08);
+}
+check:checked { -gtk-icon-source: -gtk-icontheme("object-select-symbolic"); }
+check:indeterminate, radio:indeterminate { -gtk-icon-source: -gtk-icontheme("list-remove-symbolic"); }
+radio:checked {
+  -gtk-icon-source: none;
+  background-image: radial-gradient(circle, white 0px, white 2.6px, transparent 3.2px);
+}
+checkbutton:focus:focus-visible > check, checkbutton:focus:focus-visible > radio {
+  box-shadow: $focus-ring;
+}
+check:disabled, radio:disabled { opacity: 0.5; }
+
+// ───────────────────────── Scale ─────────────────────────
+
+scale { padding: 10px 12px; }
+scale > trough {
+  min-height: 4px;
+  border-radius: 999px;
+  background-color: $mac_track;
+  outline: none;
+}
+scale.vertical > trough { min-width: 4px; min-height: 0; }
+scale > trough > highlight {
+  border-radius: 999px;
+  background-color: $mac_accent;
+}
+scale > trough > slider {
+  min-width: 22px;
+  min-height: 16px;
+  margin: -6px -11px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.28);
+}
+scale.vertical > trough > slider { min-width: 16px; min-height: 22px; margin: -11px -6px; }
+scale > trough > slider:hover, scale > trough > slider:active { background-color: #ffffff; }
+scale:focus:focus-visible > trough > slider { box-shadow: $focus-ring, 0 1px 4px rgba(0, 0, 0, 0.28); }
+
+// ───────────────────────── Progress ─────────────────────────
+
+progressbar > trough {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: $mac_track;
+}
+progressbar > trough > progress {
+  min-height: 6px;
+  border-radius: 999px;
+  background-color: $mac_accent;
+}
+progressbar.osd > trough, progressbar.osd > trough > progress { min-height: 3px; }
+levelbar > trough > block.filled { background-color: $mac_accent; }
+levelbar > trough > block.empty { background-color: $mac_track; }
+
+// ───────────────────────── Lists ─────────────────────────
+
+.navigation-sidebar { padding: 6px 10px; }
+.navigation-sidebar > row {
+  min-height: 28px;
+  padding: 0 8px;
+  margin: 1px 0;
+  border-radius: $radius-item;
+  color: $mac_fg;
+}
+.navigation-sidebar > row:hover { background-color: a(currentColor, 0.04); }
+.navigation-sidebar > row:selected,
+.navigation-sidebar > row:selected:hover {
+  background-color: $mac_selection;
+  color: $mac_fg;
+}
+.navigation-sidebar > row image { color: $mac_accent; }
+.navigation-sidebar > row:selected image { color: $mac_accent; }
+
+// System-Settings style grouped lists
+list.boxed-list, .boxed-list, list.content {
+  border-radius: $radius-card;
+  background-color: $mac_card;
+  box-shadow: 0 0 0 0.5px $mac_border;
+}
+list.boxed-list > row, .boxed-list > row {
+  min-height: 40px;
+  border-bottom: 1px solid $mac_separator;
+}
+list.boxed-list > row:last-child, .boxed-list > row:last-child { border-bottom: none; }
+list.boxed-list > row:first-child { border-radius: $radius-card $radius-card 0 0; }
+list.boxed-list > row:last-child { border-radius: 0 0 $radius-card $radius-card; }
+list.boxed-list > row:only-child { border-radius: $radius-card; }
+row.activatable:hover { background-color: a(currentColor, 0.03); }
+row.activatable:active { background-color: a(currentColor, 0.07); }
+row .subtitle, row.property .subtitle { font-size: 11px; color: $mac_fg_dim; }
+row > box.header > box.title > .title { font-weight: 400; }
+
+// Selected rows in views use the accent like Finder's focused list
+listview > row:selected, columnview > listview > row:selected,
+list:not(.navigation-sidebar):not(.boxed-list) > row:selected {
+  background-color: $mac_accent;
+  color: #ffffff;
+  border-radius: $radius-item;
+}
+gridview > child:selected { background-color: a($mac_accent, 0.25); border-radius: 8px; }
+
+// ───────────────────────── Popovers & menus ─────────────────────────
+
+popover > contents, popover.background > contents {
+  border-radius: $radius-menu;
+  padding: 5px;
+  background-color: $mac_popover;
+  color: $mac_fg;
+  box-shadow: 0 0 0 0.5px $mac_border_strong, 0 8px 24px $mac_shadow_strong, 0 2px 6px $mac_shadow;
+}
+popover > arrow { background-color: $mac_popover; border: none; box-shadow: none; }
+
+popover.menu > contents { padding: 5px; min-width: 180px; }
+popover.menu modelbutton, popover.menu > contents modelbutton {
+  min-height: 22px;
+  padding: 1px 8px;
+  border-radius: $radius-item;
+  color: $mac_fg;
+  font-weight: 400;
+}
+popover.menu modelbutton:hover, popover.menu modelbutton:focus,
+popover.menu modelbutton:selected {
+  background-color: $mac_accent;
+  color: #ffffff;
+}
+popover.menu modelbutton:hover accelerator,
+popover.menu modelbutton:selected accelerator { color: a(white, 0.75); }
+popover.menu modelbutton accelerator { color: $mac_fg_dim; }
+popover.menu modelbutton:disabled { color: $mac_fg_disabled; }
+popover.menu separator, popover separator {
+  min-height: 1px;
+  margin: 4px 8px;
+  background-color: $mac_separator;
+}
+popover.menu check, popover.menu radio {
+  background: none;
+  box-shadow: none;
+  color: inherit;
+}
+popover.menu check:checked { -gtk-icon-source: -gtk-icontheme("object-select-symbolic"); }
+
+// Dropdown lists
+popover listview > row, popover list > row {
+  min-height: 22px;
+  border-radius: $radius-item;
+  padding: 2px 8px;
+}
+popover listview > row:hover, popover listview > row:selected,
+popover list > row:hover {
+  background-color: $mac_accent;
+  color: #ffffff;
+}
+
+tooltip, tooltip.background {
+  border-radius: 6px;
+  padding: 4px 8px;
+  background-color: $mac_tooltip;
+  color: $mac_fg;
+  box-shadow: 0 0 0 0.5px $mac_border_strong, 0 3px 8px $mac_shadow;
+  font-size: 11px;
+}
+tooltip > box { border-spacing: 4px; }
+
+// ───────────────────────── Dialogs ─────────────────────────
+
+dialog.alert sheet, dialog.alert .dialog-contents, window.messagedialog,
+dialog-host > dialog.alert > widget > sheet {
+  border-radius: 22px;
+}
+dialog.alert .heading, dialog.alert .title-2 { font-size: 13px; font-weight: 700; }
+dialog.alert .response-area > button {
+  border-radius: 999px;
+  min-height: 28px;
+  margin: 4px;
+}
+dialog-host > dialog > widget > sheet,
+dialog-host > dialog.floating sheet {
+  border-radius: $radius-window;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.3), 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+// ───────────────────────── Scrollbars ─────────────────────────
+
+scrollbar { background: none; border: none; }
+scrollbar > range > trough { background: none; }
+// libadwaita pads the slider with an 8px transparent border (bigger hit area)
+// and a matching -8px margin; keep that geometry and only change the look.
+scrollbar > range > trough > slider {
+  min-width: 7px;
+  min-height: 7px;
+  margin: -8px;
+  border: 8px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: a($mac_fg_solid, 0.42);
+  outline: none;
+}
+scrollbar.vertical > range > trough > slider { min-height: 32px; }
+scrollbar.horizontal > range > trough > slider { min-width: 32px; }
+scrollbar.overlay-indicator:not(.hovering) > range > trough > slider { min-width: 5px; min-height: 5px; }
+scrollbar.vertical.overlay-indicator:not(.hovering) > range > trough > slider { min-height: 32px; }
+scrollbar.horizontal.overlay-indicator:not(.hovering) > range > trough > slider { min-width: 32px; }
+scrollbar.hovering > range > trough > slider { min-width: 9px; min-height: 9px; background-color: a($mac_fg_solid, 0.55); }
+scrollbar.overlay-indicator.hovering > range > trough { background-color: a($mac_fg_solid, 0.04); }
+
+// ───────────────────────── Tabs ─────────────────────────
+
+tabbar .box { background: none; box-shadow: none; padding: 4px; }
+tabbar tab {
+  border-radius: $radius-control;
+  min-height: 26px;
+}
+tabbar tab:selected {
+  background-color: $mac_control;
+  box-shadow: 0 0 0 0.5px $mac_border, 0 1px 2px $mac_shadow;
+}
+tabbar tab:hover:not(:selected) { background-color: $mac_fill; }
+notebook > header > tabs > tab { border-radius: $radius-item; min-height: 24px; }
+notebook > header > tabs > tab:checked { background-color: $mac_control; box-shadow: 0 0 0 0.5px $mac_border; }
+
+// ───────────────────────── Misc ─────────────────────────
+
+.dim-label, label.dim-label { color: $mac_fg_dim; opacity: 1; }
+.heading { font-weight: 700; }
+.title-1 { font-weight: 700; font-size: 26px; }
+.title-2 { font-weight: 700; font-size: 20px; }
+.title-3 { font-weight: 600; font-size: 17px; }
+.title-4 { font-weight: 600; font-size: 15px; }
+.caption { font-size: 11px; }
+separator { background-color: $mac_separator; min-width: 1px; min-height: 1px; }
+toast { border-radius: 999px; background-color: $mac_popover; color: $mac_fg;
+        box-shadow: 0 0 0 0.5px $mac_border_strong, 0 6px 18px $mac_shadow_strong; }
+.card { border-radius: $radius-card; background-color: $mac_card; box-shadow: 0 0 0 0.5px $mac_border; }
+statuspage > scrolledwindow > viewport > box > clamp > box > .title { font-weight: 700; }
+banner > revealer > widget { background-color: a($mac_accent, 0.15); }
+
+// ───────────────────────── Finder (Nautilus) & sidebars ─────────────────────────
+
+// macOS source lists have no title above them.
+.sidebar-pane headerbar windowtitle,
+.sidebar-pane headerbar .title { opacity: 0; }
+
+// Buttons inside sidebar rows (eject, etc.) are plain glyphs.
+.navigation-sidebar button,
+.navigation-sidebar button:hover,
+.navigation-sidebar button:active,
+.sidebar-pane .navigation-sidebar row button {
+  background: none;
+  box-shadow: none;
+  min-height: 20px;
+  min-width: 20px;
+  padding: 0 4px;
+  color: $mac_fg_dim;
+}
+.navigation-sidebar button:hover { color: $mac_fg; background-color: $mac_fill_hover; border-radius: 999px; }
+.navigation-sidebar > separator { margin: 6px 8px; }
+
+// ───────────────────────── macOS Tahoe window layout ─────────────────────────
+
+// Floating sidebar: an inset, rounded glass panel instead of a full-height column.
+overlay-split-view > .sidebar-pane,
+navigation-split-view > .sidebar-pane,
+.sidebar-pane {
+  margin: 8px 0 8px 8px;
+  border-radius: 14px;
+  background-color: $mac_sidebar;
+  box-shadow: 0 0 0 0.5px $mac_border_strong, 0 2px 10px a(black, 0.12);
+}
+overlay-split-view > .sidebar-pane:dir(rtl),
+navigation-split-view > .sidebar-pane:dir(rtl) { margin: 8px 8px 8px 0; }
+// The window behind the floating sidebar matches the content area.
+overlay-split-view, navigation-split-view { background-color: $mac_view; }
+.sidebar-pane headerbar { padding-left: 4px; }
+// Collapsed (narrow) sidebars slide over the content: keep them flat.
+overlay-split-view.collapsed > .sidebar-pane { margin: 0; border-radius: 0; }
+
+// Toolbar buttons: compact glyphs with a soft round highlight on hover.
+headerbar button.image-button:not(.titlebutton),
+headerbar menubutton.image-button > button,
+headerbar splitbutton > button,
+headerbar splitbutton > menubutton > button {
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background-color: transparent;
+}
+headerbar button.image-button:not(.titlebutton):hover,
+headerbar menubutton.image-button > button:hover,
+headerbar splitbutton > button:hover,
+headerbar splitbutton > menubutton > button:hover { background-color: $mac_fill_hover; }
+headerbar button.image-button:not(.titlebutton):active,
+headerbar button.image-button:not(.titlebutton):checked,
+headerbar menubutton.image-button > button:checked { background-color: $mac_fill_active; }
+headerbar button.image-button:not(.titlebutton):disabled { background-color: transparent; opacity: 0.5; }
+headerbar splitbutton > button { border-radius: 999px 0 0 999px; }
+headerbar splitbutton > menubutton > button { border-radius: 0 999px 999px 0; min-width: 16px; padding: 0 2px; }
+headerbar splitbutton > separator { background: none; }
+// Inside sidebars and segmented groups keep buttons bare.
+.sidebar-pane headerbar button.image-button:not(.titlebutton),
+headerbar .linked > button.image-button { background-color: transparent; }
+
+// Finder path bar: full breadcrumb, parents dimmed and the current folder in bold.
+.nautilus-path-button { font-weight: 500; color: $mac_fg_dim; }
+.nautilus-path-button:hover { color: $mac_fg; }
+.nautilus-path-button.current-dir { color: $mac_fg; }
+.nautilus-path-button.current-dir label { font-weight: 700; }
+.nautilus-pathbar > menubutton > button { background: none; }
+// The path bar is a .linked box; keep the segmented-control capsule off it.
+.nautilus-pathbar.linked, .nautilus-pathbar .linked,
+.nautilus-pathbar > scrolledwindow, .nautilus-pathbar viewport {
+  background: none;
+  box-shadow: none;
+  padding: 0;
+}
+.nautilus-pathbar .nautilus-path-button.current-dir,
+.nautilus-pathbar .nautilus-path-button.current-dir:hover { background: none; box-shadow: none; }
+
+// Title-only bars (X11 app frames drawn by Mutter, plain GTK windows) are
+// slim, like macOS: traffic lights and a centered title.
+headerbar.default-decoration,
+window.ssd headerbar, window.ssd-frame headerbar, .titlebar.default-decoration {
+  min-height: 34px;
+  padding: 0 8px;
+}
+headerbar.default-decoration .title { font-size: 13px; font-weight: 700; }
+
+
+// ───────────────────────── System Settings sidebar ─────────────────────────
+// Rows whose icon sits directly in the row box (GNOME Settings) get macOS
+// colored icon tiles; Finder's rows (icon inside a revealer) keep blue glyphs.
+.navigation-sidebar > row { min-height: 30px; padding-top: 0; padding-bottom: 0; }
+// Settings sets 12px margins on its row boxes in code; trim them from CSS.
+.navigation-sidebar > row:not(.sidebar-row) > *:not(revealer) { margin-top: -5px; margin-bottom: -5px; }
+// Finder's rows wrap their content in a revealer; only Settings-style rows get tiles.
+.navigation-sidebar > row > :not(revealer) image,
+.navigation-sidebar > row:selected > :not(revealer) image,
+.navigation-sidebar > row:hover > :not(revealer) image {
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0;
+  -gtk-icon-size: 14px;
+  border-radius: 6px;
+  color: #ffffff;
+  background-color: #8e8e93;
+}
+.navigation-sidebar > row:selected > :not(revealer) image { color: #ffffff; }
+.navigation-sidebar > row:nth-child(1) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(2) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(3) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(4) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(5) > :not(revealer) image { background-color: #ff2d55; }
+.navigation-sidebar > row:nth-child(6) > :not(revealer) image { background-color: #34c759; }
+.navigation-sidebar > row:nth-child(7) > :not(revealer) image { background-color: #5e5ce6; }
+.navigation-sidebar > row:nth-child(8) > :not(revealer) image { background-color: #3a3a3c; }
+.navigation-sidebar > row:nth-child(9) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(10) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(11) > :not(revealer) image { background-color: #ff3b30; }
+.navigation-sidebar > row:nth-child(12) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(13) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(14) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(15) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(16) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(17) > :not(revealer) image { background-color: #ff9f0a; }
+.navigation-sidebar > row:nth-child(18) > :not(revealer) image { background-color: #8e8e93; }
+.navigation-sidebar > row:nth-child(19) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(20) > :not(revealer) image { background-color: #0a84ff; }
+.navigation-sidebar > row:nth-child(21) > :not(revealer) image { background-color: #8e8e93; }
+
+
+// ───────────────────────── Calculator: macOS keypad colors ─────────────────────────
+.math-buttons button { border-radius: 999px; min-height: 36px; font-size: 15px; box-shadow: none; }
+.math-buttons button.number-button, .math-buttons button.numeric-point-button {
+  background-color: #505050; color: #ffffff;
+}
+.math-buttons button.number-button:hover, .math-buttons button.numeric-point-button:hover { background-color: #6a6a6a; }
+.math-buttons button.function-button, .math-buttons button.clear-button,
+.math-buttons button.percent-button, .math-buttons button.parenthesis-button {
+  background-color: #a5a5a5; color: #000000;
+}
+.math-buttons button.operator-button, .math-buttons button.suggested-action {
+  background-color: #ff9f0a; color: #ffffff; font-size: 18px;
+}
+.math-buttons button.operator-button:hover, .math-buttons button.suggested-action:hover { background-color: #ffb340; }
+
+// Maximized windows: the traffic lights move to the menu bar (tpct-mac-shell),
+// so collapse the window's own copy.
+window.maximized windowcontrols,
+window.maximized windowcontrols > button,
+window.maximized windowcontrols > button > image,
+window.maximized headerbar windowcontrols > button.image-button:not(.titlebutton):not(.suggested-action) {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border-spacing: 0;
+  opacity: 0;
+  -gtk-icon-size: 0;
+}
+
+// X11 app frames: the title bar fills the frame edge to edge (no strips of
+// window background around it).
+window.ssd-frame { background-color: $headerbar_bg_color; padding: 0; }
+window.ssd-frame > *, window.ssd-frame headerbar {
+  margin: 0;
+  box-shadow: none;
+}
+window.ssd-frame headerbar { padding: 0 8px; }
+
+// ───────────────────────── Finder file views ─────────────────────────
+
+// Icon view: no tinted cell; the selected icon gets a soft grey box and the
+// name a blue pill, like Finder.
+// Finder never frames the whole cell: drop GTK's focus ring (outline on the
+// focused child) and any cell shadow, in every state.
+.nautilus-grid-view gridview > child,
+.nautilus-grid-view gridview > child:hover,
+.nautilus-grid-view gridview > child:focus,
+.nautilus-grid-view gridview > child:focus-visible,
+.nautilus-grid-view gridview > child:focus:focus-visible,
+.nautilus-grid-view gridview > child:selected,
+.nautilus-grid-view gridview > child:selected:hover,
+.nautilus-grid-view gridview > child:selected:focus,
+.nautilus-grid-view gridview > child:selected:focus-visible {
+  background: none;
+  box-shadow: none;
+  outline: none;
+  color: $mac_fg;
+}
+.nautilus-grid-view gridview > child .nautilus-view-cell,
+.nautilus-grid-view gridview > child:hover .nautilus-view-cell,
+.nautilus-grid-view gridview > child:focus .nautilus-view-cell,
+.nautilus-grid-view gridview > child:focus-visible .nautilus-view-cell,
+.nautilus-grid-view gridview > child:selected .nautilus-view-cell {
+  box-shadow: none;
+  outline: none;
+}
+.nautilus-grid-view gridview > child:selected .nautilus-view-cell > :first-child {
+  background-color: a($mac_fg_solid, 0.10);
+  border-radius: 8px;
+}
+.nautilus-grid-view gridview > child:selected .icon-ui-labels-box > label:first-child {
+  background-color: $mac_accent;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 0 2px;
+}
+.nautilus-grid-view gridview:not(:focus-within) > child:selected .icon-ui-labels-box > label:first-child {
+  background-color: a($mac_fg_solid, 0.18);
+  color: $mac_fg;
+}
+
+// List view: alternating rows, no gaps, accent selection.
+.nautilus-list-view columnview > listview { border-spacing: 0; padding-top: 4px; }
+.nautilus-list-view columnview > listview > row { border-radius: 6px; min-height: 24px; }
+.nautilus-list-view columnview > listview > row:nth-child(even):not(:selected) {
+  background-color: a($mac_fg_solid, 0.035);
+}
+.nautilus-list-view columnview > listview > row:selected { background-color: $mac_accent; color: #ffffff; }
+// No focus ring around the row; the accent fill already shows the selection.
+.nautilus-list-view columnview > listview > row,
+.nautilus-list-view columnview > listview > row:focus,
+.nautilus-list-view columnview > listview > row:focus-visible,
+.nautilus-list-view columnview > listview > row:focus:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+// Column headers (ColumnView and TreeView): flat macOS table headers.
+columnview > header {
+  background: none;
+  box-shadow: inset 0 -1px $mac_separator;
+}
+columnview > header > button,
+treeview.view > header > button,
+columnview > header > button:hover,
+treeview.view > header > button:hover,
+columnview > header > button:active,
+treeview.view > header > button:active,
+columnview > header > button:checked,
+treeview.view > header > button:checked,
+columnview > header > button:disabled,
+treeview.view > header > button:disabled,
+columnview > header > button:backdrop,
+treeview.view > header > button:backdrop,
+columnview > header > button:focus,
+treeview.view > header > button:focus,
+columnview > header > button:focus-visible,
+treeview.view > header > button:focus-visible,
+columnview > header > button:focus:focus-visible,
+treeview.view > header > button:focus:focus-visible {
+  min-height: 22px;
+  min-width: 0;
+  padding: 2px 8px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: inset -1px 0 $mac_separator;
+  outline: none;
+  font-weight: 500;
+  font-size: 12px;
+  color: $mac_fg_dim;
+}
+columnview > header > button:last-child,
+treeview.view > header > button:last-child,
+columnview > header > button:last-child:hover,
+treeview.view > header > button:last-child:hover,
+columnview > header > button:last-child:active,
+treeview.view > header > button:last-child:active,
+columnview > header > button:last-child:checked,
+treeview.view > header > button:last-child:checked,
+columnview > header > button:last-child:disabled,
+treeview.view > header > button:last-child:disabled,
+columnview > header > button:last-child:backdrop,
+treeview.view > header > button:last-child:backdrop,
+columnview > header > button:last-child:focus,
+treeview.view > header > button:last-child:focus,
+columnview > header > button:last-child:focus-visible,
+treeview.view > header > button:last-child:focus-visible,
+columnview > header > button:last-child:focus:focus-visible,
+treeview.view > header > button:last-child:focus:focus-visible {
+  box-shadow: none;
+}
+columnview > header > button:hover,
+treeview.view > header > button:hover { background-color: a($mac_fg, 0.04); }
+columnview > header > button:active,
+treeview.view > header > button:active { background-color: a($mac_fg, 0.08); }
+columnview > header > button:disabled,
+treeview.view > header > button:disabled { color: $mac_fg_disabled; }
+// libadwaita styles the inner title box (82% size, bold, 40% colour); reset it to the button's values.
+columnview > header > button > box,
+treeview.view > header > button > box,
+columnview > header > button:hover > box,
+treeview.view > header > button:hover > box,
+columnview > header > button:active > box,
+treeview.view > header > button:active > box,
+columnview > header > button:checked > box,
+treeview.view > header > button:checked > box,
+columnview > header > button:disabled > box,
+treeview.view > header > button:disabled > box,
+columnview > header > button:backdrop > box,
+treeview.view > header > button:backdrop > box {
+  font-size: 12px;
+  font-weight: 500;
+  color: inherit;
+}
+
+// TreeView has no separate header node for the bottom rule.
+treeview.view > header > button {
+  &, &:hover, &:active, &:checked, &:disabled, &:backdrop,
+  &:focus, &:focus-visible, &:focus:focus-visible {
+    box-shadow: inset -1px 0 $mac_separator, inset 0 -1px $mac_separator;
+  }
+  &:last-child {
+    &, &:hover, &:active, &:checked, &:disabled, &:backdrop,
+    &:focus, &:focus-visible, &:focus:focus-visible {
+      box-shadow: inset 0 -1px $mac_separator;
+    }
+  }
+}

@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "default_mode": "dark",
+  "appearance": {
+    "cursor_theme": "WhiteSur-cursors",
+    "cursor_size": 24,
+    "accent_color": "blue",
+    "text_scaling": 1.0
+  },
+  "fonts": {
+    "interface": "Inter 10.5",
+    "document": "Inter 11",
+    "monospace": "Ubuntu Sans Mono 11",
+    "titlebar": "Inter Bold 10.5"
+  },
+  "gnome": {
+    "org.gnome.desktop.interface": {
+      "clock-format": "12h",
+      "clock-show-date": true,
+      "clock-show-weekday": true,
+      "clock-show-seconds": false,
+      "enable-hot-corners": false,
+      "enable-animations": true
+    },
+    "org.gnome.desktop.wm.preferences": {
+      "button-layout": "close,minimize,maximize:",
+      "action-double-click-titlebar": "toggle-maximize",
+      "action-middle-click-titlebar": "none"
+    },
+    "org.gnome.mutter": {
+      "center-new-windows": true,
+      "edge-tiling": true
+    },
+    "org.gnome.desktop.background": {
+      "picture-options": "zoom",
+      "color-shading-type": "solid"
+    },
+    "org.gnome.desktop.peripherals.touchpad": {
+      "tap-to-click": true,
+      "natural-scroll": true
+    },
+    "org.gnome.nautilus.preferences": {
+      "default-folder-viewer": "icon-view",
+      "show-hidden-files": false,
+      "show-image-thumbnails": "always",
+      "date-time-format": "detailed"
+    },
+    "org.gnome.nautilus.icon-view": {
+      "default-zoom-level": "medium"
+    }
+  },
+  "dock": {
+    "schema": "org.gnome.shell.extensions.dash-to-dock",
+    "settings": {
+      "dock-position": "BOTTOM",
+      "extend-height": false,
+      "dock-fixed": false,
+      "autohide": true,
+      "autohide-in-fullscreen": false,
+      "intellihide": true,
+      "intellihide-mode": "FOCUS_APPLICATION_WINDOWS",
+      "dash-max-icon-size": 40,
+      "icon-size-fixed": true,
+      "background-opacity": 0.32,
+      "transparency-mode": "FIXED",
+      "custom-theme-shrink": true,
+      "apply-custom-theme": false,
+      "running-indicator-style": "DOTS",
+      "running-indicator-dominant-color": false,
+      "click-action": "minimize-or-previews",
+      "middle-click-action": "launch",
+      "shift-click-action": "launch",
+      "shift-middle-click-action": "minimize",
+      "scroll-action": "switch-workspace",
+      "show-trash": true,
+      "show-mounts": false,
+      "show-mounts-network": false,
+      "show-show-apps-button": true,
+      "show-apps-at-top": true,
+      "show-apps-always-in-the-edge": true,
+      "isolate-workspaces": false,
+      "isolate-monitors": false,
+      "always-center-icons": true
+    }
+  },
+  "extensions": {
+    "required": [
+      "user-theme@gnome-shell-extensions.gcampax.github.com",
+      "tpct-mac-shell@tpct",
+      "blur-my-shell@aunetx",
+      "macos-dock@vinnytherobot.github.io"
+    ],
+    "preserve": [
+      "ding@rastersoft.com",
+      "snapd-prompting@canonical.com",
+      "snapd-search-provider@canonical.com",
+      "tiling-assistant@ubuntu.com",
+      "ubuntu-appindicators@ubuntu.com",
+      "web-search-provider@ubuntu.com",
+      "gsconnect@andyholmes.github.io"
+    ],
+    "conflicting_docks": [
+      "dash-to-dock@micxgx.gmail.com",
+      "dash2dock-lite@icedman.github.com"
+    ],
+    "optional_full_profile": [
+      "blur-my-shell@aunetx"
+    ],
+    "ensure_enabled": [
+      "ubuntu-appindicators@ubuntu.com",
+      "snapd-prompting@canonical.com",
+      "snapd-search-provider@canonical.com",
+      "web-search-provider@ubuntu.com",
+      "ding@rastersoft.com",
+      "tiling-assistant@ubuntu.com",
+      "gsconnect@andyholmes.github.io"
+    ],
+    "disable": [
+      "ubuntu-dock@ubuntu.com"
+    ],
+    "session_blacklist": [
+      "ubuntu-dock@ubuntu.com"
+    ]
+  },
+  "keybindings": {
+    "org.gnome.desktop.wm.keybindings": {
+      "close": [
+        "<Super>w",
+        "<Alt>F4"
+      ],
+      "minimize": [
+        "<Super>m"
+      ],
+      "switch-applications": [
+        "<Super>Tab"
+      ],
+      "switch-applications-backward": [
+        "<Shift><Super>Tab"
+      ],
+      "switch-windows": [
+        "<Super>grave"
+      ],
+      "switch-windows-backward": [
+        "<Shift><Super>grave"
+      ],
+      "switch-input-source": [
+        "<Alt>Shift_L",
+        "XF86Keyboard"
+      ],
+      "switch-input-source-backward": [
+        "<Shift>Alt_L"
+      ]
+    },
+    "org.gnome.shell.keybindings": {
+      "screenshot": [
+        "<Shift><Super>3"
+      ],
+      "show-screenshot-ui": [
+        "<Shift><Super>4",
+        "<Shift><Super>5",
+        "Print"
+      ]
+    }
+  },
+  "spotlight": {
+    "command": "tahoe-spotlight",
+    "binding": "<Super>space",
+    "name": "Spotlight Search"
+  },
+  "extensions_tuning": {
+    "blur-my-shell@aunetx": {
+      "panel": {
+        "blur": true,
+        "brightness": 0.62,
+        "sigma": 24,
+        "static-blur": true
+      },
+      "dash-to-dock": {
+        "blur": false
+      },
+      "popup": {
+        "blur": false
+      },
+      "overview": {
+        "blur": false
+      }
+    }
+  },
+  "terminal": {
+    "palette_file": "assets/themes/tpct-src/ptyxis/macOS.palette",
+    "font": "Ubuntu Sans Mono 11"
+  },
+  "firefox": {
+    "userchrome": "assets/themes/tpct-src/firefox/userChrome.css",
+    "enabled_in_profile": "full"
+  },
+  "widgets": {
+    "layout": [
+      {
+        "id": "clock",
+        "col": 0,
+        "row": 0
+      },
+      {
+        "id": "calendar",
+        "col": 0,
+        "row": 1
+      },
+      {
+        "id": "world",
+        "col": 0,
+        "row": 2
+      },
+      {
+        "id": "battery",
+        "col": 1,
+        "row": 0
+      }
+    ],
+    "note": "Weather is omitted until a city is configured in GNOME Weather; widgets can be rearranged by dragging."
+  },
+  "macos_dock": {
+    "schema": "org.gnome.shell.extensions.macosdock",
+    "settings": {
+      "dock-position": 0,
+      "icon-size": 50,
+      "icon-quality": 2,
+      "magnification-enabled": true,
+      "magnification-scale": 1.45,
+      "magnification-falloff": 125,
+      "magnification-framerate": 60,
+      "auto-hide": true,
+      "show-threshold": 18,
+      "animation-duration": 220,
+      "bounce-on-launch": true,
+      "window-previews": false,
+      "preview-scale": 180,
+      "dock-blur-enabled": true,
+      "dock-blur-sigma": 20,
+      "dock-border-radius": 26,
+      "running-indicators": true,
+      "running-indicator-style": 0,
+      "show-running-apps": true,
+      "show-applications-button": true,
+      "show-applications-button-position": 0,
+      "drag-reorder": true,
+      "media-indicator": false,
+      "media-controls": false,
+      "enable-keyboard-nav": false,
+      "dock-workspace-mode": 0,
+      "magnification-spring-stiffness": 320.0,
+      "magnification-spring-damping": 26.0,
+      "magnification-spring-mass": 1.0
+    },
+    "profiles": {
+      "full": {
+        "dock-blur-sigma": 22,
+        "window-previews": false,
+        "icon-quality": 2
+      },
+      "lightweight": {
+        "dock-blur-sigma": 18,
+        "window-previews": false,
+        "icon-quality": 2
+      }
+    }
+  },
+  "blur": {
+    "panel": {
+      "blur": true,
+      "static-blur": true,
+      "override-background": false,
+      "unblur-in-overview": false,
+      "brightness": 0.8
+    },
+    "popup": {
+      "blur": true,
+      "static-blur": true,
+      "override-background": false,
+      "preserve-shell-theme": true,
+      "corner-radius": 20,
+      "quick-settings-corner-radius": 28,
+      "menu-corner-radius": 14,
+      "notification-corner-radius": 20,
+      "osd-corner-radius": 20,
+      "brightness": 0.8
+    }
+  }
+}

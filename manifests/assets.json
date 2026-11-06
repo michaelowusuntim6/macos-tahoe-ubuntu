@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "description": "Bundled, checksum-verified assets. The installer never substitutes an unverified file.",
+  "assets": {
+    "theme-dark": {
+      "local": "assets/themes/tpct-dist/TPCT-Mac-Dark",
+      "kind": "directory",
+      "sha256_tree": "computed-at-install"
+    },
+    "theme-light": {
+      "local": "assets/themes/tpct-dist/TPCT-Mac-Light",
+      "kind": "directory",
+      "sha256_tree": "computed-at-install"
+    },
+    "gtk4-libadwaita": {
+      "local": "assets/themes/tpct-dist/gtk-4.0/gtk-dark.css",
+      "kind": "file",
+      "sha256": "d60517f3a3537dffc3cf73d9ba2b4d629dc7721b621c023963d0764aadd56452"
+    },
+    "icons-light": {
+      "local": "assets/icons/WhiteSur-light.tar.gz",
+      "kind": "tarball",
+      "sha256": "12e3931f8d3b2d3feae4cb4497f838ebc7a777af0c1ed7d327cbad8bf5c93c99"
+    },
+    "icons-dark": {
+      "local": "assets/icons/WhiteSur-dark.tar.gz",
+      "kind": "tarball",
+      "sha256": "047321fec59362c99d63a72fcc36f6cd2d15f3a5e8ebc19f3688d28b9859db55"
+    },
+    "icons-source": {
+      "local": "assets/icons/WhiteSur-icons-src.tar.gz",
+      "kind": "tarball",
+      "sha256": "36ec86d37e764f04b82f602077b514643bb05cc004537868f83bda600402da14"
+    },
+    "cursors": {
+      "local": "assets/cursors/WhiteSur-cursors",
+      "kind": "directory",
+      "sha256_tree": "computed-at-install"
+    },
+    "font-inter": {
+      "local": "assets/fonts/Inter-Variable.ttf",
+      "kind": "file",
+      "sha256": "29160a80ff49ddcab2c97711247e08b1fab27a484a329ce8b813d820dc559031"
+    },
+    "wallpaper-dark": {
+      "local": "assets/wallpapers/tahoe-dark.png",
+      "kind": "file",
+      "sha256": "1d11dd293e7c40121412e7b00bc0bd583a1c3f957e2100dde9650c6c257c5a90"
+    },
+    "wallpaper-light": {
+      "local": "assets/wallpapers/tahoe-light.png",
+      "kind": "file",
+      "sha256": "bb8a84df405506e86b0492f510caea2218337b6a87e47608d5d439295766f4ba"
+    },
+    "wallpaper-dusk": {
+      "local": "assets/wallpapers/tahoe-dusk.png",
+      "kind": "file",
+      "sha256": "7ef6057d855fe71cf896f14bc68af8ceb7241785b0c337fcfd9e6ee8d81b9b04"
+    },
+    "extension-tpct": {
+      "local": "extensions/tpct-mac-shell@tpct",
+      "kind": "directory",
+      "sha256_tree": "computed-at-install"
+    },
+    "extension-user-theme": {
+      "local": "assets/cache/extensions/user-theme@gnome-shell-extensions.gcampax.github.com.shell-extension.zip",
+      "kind": "zip-extension",
+      "sha256": "d002bcd7d5bf780b1b943fa3617d4bc067a2174be576ec5438fcb76467390c05"
+    },
+    "extension-blur-my-shell": {
+      "local": "assets/cache/extensions/blur-my-shell@aunetx.shell-extension.zip",
+      "kind": "zip-extension",
+      "sha256": "3218766acf4b0feed700ba518a1db5616f59c7e1036758ffbd18bf4743e9b2db"
+    },
+    "wallpaper-dark-apple": {
+      "local": "assets/wallpapers/apple/tahoe-dark.jpg",
+      "kind": "file",
+      "sha256": "346180b2de5069b7befcd304e8b560bc5aeb65ddb6a03d359764b442cd55e6b4",
+      "proprietary": true,
+      "url": "https://wallpapers.betaprofiles.com/wallpapers/2026/05/macos-tahoe-26-wallpaper-dark-2d3043b1.jpg",
+      "note": "Apple wallpaper, personal use only; excluded from portable releases."
+    },
+    "wallpaper-light-apple": {
+      "local": "assets/wallpapers/apple/tahoe-light.jpg",
+      "kind": "file",
+      "sha256": "35d5b7ef4142f4061c38a9fdd1ad4b4dcfaee000d01213676cc274da3d53627f",
+      "proprietary": true,
+      "url": "https://wallpapers.betaprofiles.com/wallpapers/2026/05/macos-tahoe-26-wallpaper-light-092246d4.jpg",
+      "note": "Apple wallpaper, personal use only; excluded from portable releases."
+    },
+    "wallpaper-dark-fallback": {
+      "local": "assets/wallpapers/fallback/tahoe-dark.jpg",
+      "kind": "file",
+      "sha256": "a1724f8814595d74c3e08247c673e1adee3564212570933d3232ab2f9b6b08ba"
+    },
+    "wallpaper-light-fallback": {
+      "local": "assets/wallpapers/fallback/tahoe-light.jpg",
+      "kind": "file",
+      "sha256": "c2037e87fab3eb96208424e0962d9bbea2882988b116e00f52ff73599dd7570a"
+    },
+    "extension-macos-dock": {
+      "local": "extensions/macos-dock@vinnytherobot.github.io",
+      "kind": "directory",
+      "sha256_tree": "computed-at-install",
+      "proprietary": false
+    }
+  }
+}
